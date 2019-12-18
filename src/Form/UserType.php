@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -64,13 +65,12 @@ class UserType extends AbstractType
                     'required' => false,
                     'constraints' => [new NotBlank()]
                 ]);
+            $builder->add(
+                'submit',
+                SubmitType::class,
+                ['label' => 'S\'inscrire', 'attr' => ['class' => 'btn btn-success']]
+            );
         }
-
-        $builder->add(
-            'submit',
-            SubmitType::class,
-            ['label' => 'S\'inscrire', 'attr' => ['class' => 'btn btn-success']]
-        );
 
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
