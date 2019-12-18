@@ -1,41 +1,35 @@
-<div class="container">
-    <div class="row">
-        <div class="col-sm-6">
-            {% if is_granted('ROLE_USER') %}
-                <a class="btn btn-outline-success" href="#" role="button">
-                    {{ app.user.username }}
-                    {% if is_granted('ROLE_ADMIN') %}
-                        -ADMIN-
-                    {% endif %}
-                </a>
+<header>
+    {% if is_granted('ROLE_USER') %}
+        <a class="" href="#" role="button">
+            {{ app.user.username }}
+            {% if is_granted('ROLE_ADMIN') %}
+                -ADMIN-
             {% endif %}
-        </div>
-        <div class="col-sm-6 text-right">
-            {% if is_granted('ROLE_USER') %}
-                <a class="btn btn-outline-danger" href="{{ path('app_logout') }}" role="button">
-                    Disconnect
-                </a>
-            {% else %}
-                <a class="btn btn-primary" role="button" href="{{ path('app_login') }}">Log me</a>
-                <a class="btn btn-primary" role="button" href="{{ path('app_register') }}">S'inscrire</a>
-            {% endif %}
-        </div>
+        </a>
+    {% endif %}
     </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-2">
+    <div class="">
+        {% if is_granted('ROLE_USER') %}
+            <a class="btn btn-outline-danger" href="{{ path('app_logout') }}" role="button">
+                Disconnect
+            </a>
+        {% else %}
+            <a class="btn btn-primary" role="button" href="{{ path('app_login') }}">Log me</a>
+            <a class="btn btn-primary" role="button" href="{{ path('app_register') }}">S'inscrire</a>
+        {% endif %}
+
+        <div class="">
             <a class="text-primary" href="{{ path('home') }}">Index</a>
         </div>
-        <div class="col-sm-2">
+        <div class="">
             <a class="text-primary" href="{{ path('kind_index') }}">Kind</a>
         </div>
-        <div class="col-sm-2">
+        <div class="">
             <a class="text-primary" href="{{ path('series_index') }}">Series</a>
         </div>
-        <div class="col-sm-2">
+        <div class="">
             <a class="text-primary" href="{{ path('episodes_index') }}">Episodes</a>
         </div>
     </div>
-</div>
+</header>
 

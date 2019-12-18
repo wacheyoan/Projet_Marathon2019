@@ -1,0 +1,24 @@
+.footer {
+  display: flex;
+  background-color: $c-black;
+
+  .footer_link {
+    a {
+      text-decoration: none;
+      color: $c-white;
+    }
+
+    span {
+    }
+  }
+
+  .footer_mentions {
+    a {
+      img {
+      }
+    }
+
+    span {
+    }
+  }
+}
