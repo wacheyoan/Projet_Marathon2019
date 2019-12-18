@@ -2,14 +2,16 @@
     <ul class="pagination">
         {% if pagination.page > 1 %}
             <li>
+                {#Retour à la premiere page#}
                 <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': 1})) }}">
-                    <<
+                    First
                 </a>
             </li>
             <li>
+                {#Page précédente#}
                 <a href="{{ path(pagination.nomRoute,
                     pagination.paramsRoute|merge({'page': pagination.page-1})) }}">
-                    <
+                    Previous
                 </a>
             </li>
         {% endif %}
@@ -25,15 +27,17 @@
 
         {% if pagination.page < pagination.nbPages %}
             <li>
+                {#Page Suivante#}
                 <a href="{{ path(pagination.nomRoute,
                     pagination.paramsRoute|merge({'page': pagination.page+1})) }}">
-                    >
+                    Next
                 </a>
             </li>
             <li>
+                {#Dernière Page#}
                 <a href="{{ path(pagination.nomRoute,
                     pagination.paramsRoute|merge({'page': pagination.nbPages})) }}">
-                    >>
+                    Last
                 </a>
             </li>
         {% endif %}
