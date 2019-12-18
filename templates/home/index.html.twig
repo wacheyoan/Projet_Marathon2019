@@ -5,31 +5,20 @@
 {% block body %}
 <div class="container">
     <div class="row">
-        <div class="col-sm-12">
-            <h1 class="text-primary">Hello Guys SUP ?</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <h2 class="bg-secondary">Run : yarn run encore dev ( for dev )</h2>
-            <h2 class="bg-primary">Run : yarn run encore production ( for production )</h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-3">
-            <h4>Euh comment je peux upload un fichier ?
-            </h4>
-        </div>
-        <div class="col-sm-3">
-            <a target="_blank" href="https://symfony.com/doc/current/controller/upload_file.html">
-                <img src="{{ asset(base_url~'/images/users/tigrou.gif') }}"/>
-            </a>
-        </div>
-        <div class="col-sm-6">
-            <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover Title"
-                    data-content="And here's some amazing content. It's very Attractive. Right?">
-                Ah Ah Ah
-            </button>
+         <div class="col-lg-6">
+             {% if serieWithMostComments %}
+                 <h1>Série la plus commentée :</h1>
+                 <p>Nom : {{ serieWithMostComments.name }}</p>
+                 {{ serieWithMostComments.summary | raw}}
+                 <p>Langue : {{ serieWithMostComments.language }}</p>
+                 <p>Score : {{ serieWithMostComments.score }}</p>
+                 <p>Status : {{ serieWithMostComments.status }}</p>
+                 <p>Date : {{ serieWithMostComments.premiere }}</p>
+                 <p><img src="{{ base_url~serieWithMostComments.image  }}" /></p>
+             {% endif %}
+         </div>
+        <div class="col-lg-6">
+
         </div>
     </div>
 </div>

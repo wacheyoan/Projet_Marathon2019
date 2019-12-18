@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Comments;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
  * @method Comments|null find($id, $lockMode = null, $lockVersion = null)
@@ -47,4 +48,27 @@ class CommentsRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+    public function findWithMostComments(){
+
+        $raw_sql = "
+            SELECT s.*
+            FROM comments c
+            INNER JOIN series s
+            ON s.id = c.series_id
+            WHERE c.id = (
+                SELECT MAX(c.id)
+                FROM comments c
+                )
+        ";
+        $conn = $this->getEntityManager()->getConnection();
+        $query = $conn->prepare($raw_sql);
+        $query->execute();
+
+        return $query->fetch();
+
+
+
+    }
 }
