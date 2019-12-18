@@ -1,11 +1,7 @@
 {% macro serieView(serie) %}
 
-    <p>Nom : {{ serie.name }}</p>
-    {{ serie.summary | raw}}
-    <p>Langue : {{ serie.language }}</p>
+    <p>Name : {{ serie.name }}</p>
     <p>Score : {{ serie.score }}</p>
-    <p>Status : {{ serie.status }}</p>
-    <p>Date : {{ serie.premiere ? serie.premiere|date('Y-m-d') : '' }}</p>
-    <p><img src="{{ base_url~serie.image  }}" /></p>
+    <p><a href="{{ path('series_show',{id:serie.id}) }}"><img src="{{ base_url~serie.image  }}" /></a></p>
 
 {% endmacro %}
