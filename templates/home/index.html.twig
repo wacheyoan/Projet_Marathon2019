@@ -1,33 +1,102 @@
-{% extends 'base.html.twig' %}
-{% import 'macros.html.twig' as macro %}
-
-{% block title %}Home Page !{% endblock %}
-
+{% extends 'base.html.twig' %} 
+{% import 'macros.html.twig' as macro %} 
+{% block title %}Home Page !
+{% endblock %} 
 {% block body %}
-<div class="container">
-    {% if serieWithMostComments is defined and serieWithMostComments%}
-        <div class="row">
-            <div class="col-lg-6">
-                <h1>Most commented : </h1>
-                {{ macro.serieView(serieWithMostComments) }}
-            </div>
 
-    {% endif %}
-    {% if serieMostLike is defined and serieMostLike%}
-            <div class="col-lg-6">
-                <h1>Most Liked : </h1>
-                {{ macro.serieView(serieMostLike) }}
+
+
+    <div class="presentation">
+        <div class="presentation_content">
+            <h1>Lorem ipsum dolor, sit amet </h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, aspernatur rem. Vel vero necessitatibus
+                at, minus
+                hic maiores quas consequuntur ad possimus? Cupiditate hic doloremque facere ab quo voluptates
+                voluptas!</p>
+            <a href="">Je suis un bouton</a>
+        </div>
+        <div class="presentation_image">
+            <img src="" alt=""/>
+        </div>
+    </div>
+
+    <div class="recommandations">
+        <div class="recommandation_list">
+            <div class="recommandation_item">
+                <img src="https://www.mauvais-genres.com/26247/avengers-endgame-original-movie-poster-15x21-in-2019-anthony-russo-robert-downey-jr.jpg"/>
+            </div>
+            <div class="recommandation_item">
+                <img src="https://cdn.shopify.com/s/files/1/1057/4964/products/the-matrix-vintage-movie-poster-original-french-1-panel-47x63.jpg?v=1551323078"/>
+            </div>
+            <div class="recommandation_item">
+                <img src=""/>
+            </div>
+            <div class="recommandation_item">
+                <img src=""/>
+            </div>
+            <div class="recommandation_item">
+                <img src=""/>
             </div>
         </div>
-    {% endif %}
-        {% if seriesRandom is defined and seriesRandom%}
-            <h1>You may also like : </h1>
-            <div class="row">
-                    {% for serie in seriesRandom %}
-                         <div class="col-lg-4">
-                         {{ macro.serieView(serie) }}
-                        </div>
-                    {% endfor %}
+    </div>
+
+    <div class="most_commented">
+        <h3>La série la
+            <b>plus commentés</b>
+        </h3>
+        <div class="most_commented_movie">
+            <img src="" alt="">
+            <div class="movie_description">
+                <h4>13 Reason why</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore omnis nihil odit adipisci, porro
+                    possimus ea
+                    velit alias molestiae eveniet eum iusto animi impedit sapiente aspernatur quaerat excepturi
+                    consectetur dolorum!</p>
+                <a class="button" href="">Je suis un boutton<i class="fas fa-chevron-right"></i></a>
             </div>
-        {% endif %}
-{% endblock %}
+        </div>
+    </div>
+
+    <div class="trending">
+        <h3>La série favorite du <b>moment</b></h3>
+        <div class="trending_movie">
+            <div class="movie_description">
+                <h4>13 Reason why</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore omnis nihil odit adipisci, porro
+                    possimus ea
+                    velit alias molestiae eveniet eum iusto animi impedit sapiente aspernatur quaerat excepturi
+                    consectetur dolorum!</p>
+                <a class="button" href="">Je suis un boutton<i class="fas fa-chevron-right"></i></a>
+            </div>
+            <img height="400px" src="https://img.auctiva.com/imgdata/1/9/8/3/0/8/8/webimg/890241618_o.jpg" alt="">
+        </div>
+    </div>
+
+
+
+
+
+    <!-- <div class="container">
+    {% if serieWithMostComments %}
+    <div class="row">
+        <div class="col-lg-6">
+            <h1>Most commented : </h1>
+            {{ macro.serieView(serieWithMostComments) }}
+        </div>
+
+        {% endif %} {% if serieMostLike %}
+        <div class="col-lg-6">
+            <h1>Most Liked : </h1>
+            {{ macro.serieView(serieMostLike) }}
+        </div>
+    </div>
+    {% endif %} {% if seriesRandom %}
+    <h1>You may also like : </h1>
+    <div class="row">
+        {% for serie in seriesRandom %}
+        <div class="col-lg-4">
+            {{ macro.serieView(serie) }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}--> {% endblock %}

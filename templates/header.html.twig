@@ -1,4 +1,4 @@
-<header>
+<section class="header">
     {% if is_granted('ROLE_USER') %}
         <a class="" href="#" role="button">
             {{ app.user.username }}
@@ -7,29 +7,21 @@
             {% endif %}
         </a>
     {% endif %}
-    </div>
-    <div class="">
+    <div class="navbar-items">
         {% if is_granted('ROLE_USER') %}
-            <a class="btn btn-outline-danger" href="{{ path('app_logout') }}" role="button">
+            <a class="navbar-item" href="{{ path('app_logout') }}" role="button">
                 Disconnect
             </a>
+            <a class="navbar-item" href="{{ path('home') }}">Index</a>
         {% else %}
-            <a class="btn btn-primary" role="button" href="{{ path('app_login') }}">Log me</a>
-            <a class="btn btn-primary" role="button" href="{{ path('app_register') }}">S'inscrire</a>
+            <a class="navbar-item" href="{{ path('episodes_index') }}">Episodes</a>
+            <a class="navbar-item" href="{{ path('series_index') }}">Séries</a>
+            <a class="navbar-item" href="{{ path('kind_index') }}">Catégories</a>
+            <img src="{{ asset('images/logos/Logo_carre.svg') }}" alt="logo de Kino" height="100px">
+            <a class="navbar-item" href="{{ path('home') }}">Accueil</a>
+            <a class="navbar-item" role="button" href="{{ path('app_login') }}">Connexion</a>
+            <a class="navbar-item" role="button" href="{{ path('app_register') }}">Inscription</a>
         {% endif %}
-
-        <div class="">
-            <a class="text-primary" href="{{ path('home') }}">Index</a>
-        </div>
-        <div class="">
-            <a class="text-primary" href="{{ path('kind_index') }}">Kind</a>
-        </div>
-        <div class="">
-            <a class="text-primary" href="{{ path('series_index') }}">Series</a>
-        </div>
-        <div class="">
-            <a class="text-primary" href="{{ path('episodes_index') }}">Episodes</a>
-        </div>
     </div>
-</header>
+</section>
 

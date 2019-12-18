@@ -9,43 +9,49 @@
 }
 @font-face {
   font-family: "Public Sans";
-  src: url("../fonts/PublicSans-Light.ttf") format("trueType");
+  src: url("../fonts/PublicSans-ExtraLight.ttf") format("trueType");
   font-weight: 200;
 }
 @font-face {
   font-family: "Public Sans";
-  src: url("../fonts/PublicSans-Regular.ttf") format("trueType");
+  src: url("../fonts/PublicSans-Light.ttf") format("trueType");
   font-weight: 300;
 }
 @font-face {
   font-family: "Public Sans";
-  src: url("../fonts/PublicSans-Medium.ttf") format("trueType");
+  src: url("../fonts/PublicSans-Regular.ttf") format("trueType");
   font-weight: 400;
 }
 @font-face {
   font-family: "Public Sans";
-  src: url("../fonts/PublicSans-SemiBold.ttf") format("trueType");
+  src: url("../fonts/PublicSans-Medium.ttf") format("trueType");
   font-weight: 500;
 }
 @font-face {
   font-family: "Public Sans";
-  src: url("../fonts/PublicSans-Bold.ttf") format("trueType");
+  src: url("../fonts/PublicSans-SemiBold.ttf") format("trueType");
   font-weight: 600;
 }
 @font-face {
   font-family: "Public Sans";
-  src: url("../fonts/PublicSans-ExtraBold.ttf") format("trueType");
+  src: url("../fonts/PublicSans-Bold.ttf") format("trueType");
   font-weight: 700;
 }
 @font-face {
   font-family: "Public Sans";
-  src: url("../fonts/PublicSans-Black.ttf") format("trueType");
+  src: url("../fonts/PublicSans-ExtraBold.ttf") format("trueType");
   font-weight: 800;
 }
 @font-face {
   font-family: "Public Sans";
-  src: url("../fonts/PublicSans-Regular.ttf") format("trueType");
+  src: url("../fonts/PublicSans-Black.ttf") format("trueType");
   font-weight: 900;
 }
+
+a {
+  text-decoration: none;
+  color:black;
+}
+
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap');

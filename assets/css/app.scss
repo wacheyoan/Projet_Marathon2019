@@ -1,12 +1,13 @@
-body {
-    background-color: lightgray;
-    font-family: "Public Sans";
-}
-
 @import "global.scss";
 
 @import "variable";
 @import "global";
 @import "mixin";
 
-@import "elements/footer";
+@import "home";
+
+@import "components/footer";
+@import "components/header";
+
+@import "elements/button";
+@import "elements/card";
