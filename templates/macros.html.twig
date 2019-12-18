@@ -11,10 +11,12 @@
 
 {% macro bouton(value) %}
 
-    {% if value.validated %}
-        <a class="btn btn-danger" href="{{ path('comments_valid',{'id':value.id}) }}">Unvalid</a>
-    {% else %}
-        <a class="btn btn-success"  href="{{ path('comments_valid',{'id':value.id}) }}">Valid</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        {% if value.validated %}
+            <a class="btn btn-danger" href="{{ path('comments_valid',{'id':value.id}) }}">Unvalid</a>
+        {% else %}
+            <a class="btn btn-success"  href="{{ path('comments_valid',{'id':value.id}) }}">Valid</a>
+        {% endif %}
     {% endif %}
 
 {% endmacro %}
