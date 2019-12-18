@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% import 'macros.html.twig' as macros %}
 
 {% block title %}Series{% endblock %}
 
@@ -16,8 +17,8 @@
     <h1>Commentaires : </h1>
 
     {% for comment in comments  %}
-        {% if comment.validated %}
-        <p>Contenu : {{ comment.content }}</p>
+        {% if comment.validated or is_granted('ROLE_ADMIN')%}
+        <span>Contenu : {{ comment.content }}</span>{{ macros.bouton(comment) }}<br>
         {% endif %}
     {% endfor %}
 
