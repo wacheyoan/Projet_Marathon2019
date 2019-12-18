@@ -1,0 +1,13 @@
+.button {
+  display: inline-block;
+  background: #FB9106;
+  border-radius: 50px;
+  opacity: 1;
+  color:#FFFFFF;
+
+  padding:$spacing-medium $spacing-large;
+
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: $text-size-large;
+}
