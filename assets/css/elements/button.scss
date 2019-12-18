@@ -1,13 +1,28 @@
 .button {
-  display: inline-block;
-  background: #FB9106;
+  display: inline-table;
+  background: $c-primary;
   border-radius: 50px;
   opacity: 1;
   color:#FFFFFF;
+
+  transition: ease-in-out .2s;
 
   padding:$spacing-medium $spacing-large;
 
   font-family: "Poppins";
   font-weight: 500;
   font-size: $text-size-large;
+
+  i {
+    margin-left: $spacing-small;
+    transition: ease-in-out .2s;
+  }
+
+  &:hover i {
+    transform: translateX(5px);
+  }
+
+  &:hover {
+    background-color: $c-secondary;
+  }
 }
