@@ -7,6 +7,8 @@
 
     {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
 
+    <img style="max-width:150px;" src="{{ asset(users_path~'/'~user.getAvatar())}}" class="img-thumbnail"/>
+
     <a href="{{ path('user_index') }}">back to list</a>
 
     {{ include('user/_delete_form.html.twig') }}

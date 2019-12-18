@@ -9,6 +9,8 @@ use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -120,9 +122,31 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $file = $form['avatar']->getData();
+
+            if($file !== null && $file instanceof UploadedFile){
+
+                $fileInfo = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+
+                try {
+                    $fileName = \uniqid().\urldecode($fileInfo).'.'.$file->guessExtension();
+                    $file->move(
+                        $this->getParameter('users_directory'),
+                        $fileName
+                    );
+                } catch (FileException $e){
+                    $this->addFlash('danger', 'Error on FileUpload : '.$e->getMessage());
+
+                    return $this->redirectToRoute('users_profil');
+                }
+                $user->setAvatar($fileName);
+            }
+
+
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('user_index');
+            return $this->redirectToRoute('user_profil');
         }
 
         return $this->render('user/edit.html.twig', [
