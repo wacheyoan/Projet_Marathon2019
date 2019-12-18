@@ -2,9 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Episodes;
 use App\Entity\Series;
 use App\Form\SeriesType;
+use App\Repository\CommentsRepository;
+use App\Repository\EpisodesRepository;
 use App\Repository\SeriesRepository;
+use PhpParser\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,10 +55,27 @@ class SeriesController extends AbstractController
     /**
      * @Route("/{id}", name="series_show", methods={"GET"})
      */
-    public function show(Series $series): Response
+    public function show(Series $series,EpisodesRepository $episodesRepository,
+                         CommentsRepository $commentsRepository): Response
     {
+        $episodes = $episodesRepository->findBy([
+            'Series' => $series
+        ]);
+        $comments = $commentsRepository->findBy([
+            'Series' => $series
+        ]);
+
+        $tab = [];
+        /** @var Episodes $episode */
+        foreach ($episodes as $episode) {
+            $tab["Season".$episode->getSeason()][$episode->getNumber()] = $episode;
+        }
+
+        
         return $this->render('series/show.html.twig', [
             'series' => $series,
+            'seasons' => $tab,
+            'comments' => $comments
         ]);
     }
 
