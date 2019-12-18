@@ -5,10 +5,12 @@ namespace App\Controller;
 use App\Entity\Episodes;
 use App\Form\EpisodesType;
 use App\Repository\EpisodesRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/episodes")
@@ -16,17 +18,33 @@ use Symfony\Component\Routing\Annotation\Route;
 class EpisodesController extends AbstractController
 {
     /**
-     * @Route("/", name="episodes_index", methods={"GET"})
+     * @Route("/page/{page}", requirements={"page" = "\d+"},name="episodes_index", methods={"GET"})
      */
-    public function index(EpisodesRepository $episodesRepository): Response
+    public function index(EpisodesRepository $episodesRepository,$page): Response
     {
+        /*$episodes = $episodesRepository->findBy([],[
+            'premiere' => 'DESC'
+        ]);*/
+
+        $episodes = $episodesRepository->findAllOrderedByDatePaginated($page,20);
+
+        $pagination = [
+            'page' => $page,
+            'nbPages' => ceil(count($episodes) / 20),
+            'nomRoute' => 'episodes_index',
+            'paramsRoute' => []
+        ];
+
+
         return $this->render('episodes/index.html.twig', [
-            'episodes' => $episodesRepository->findAll(),
+            'episodes' => $episodes,
+            'pagination' => $pagination,
         ]);
     }
 
     /**
      * @Route("/new", name="episodes_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response
     {
@@ -60,6 +78,7 @@ class EpisodesController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="episodes_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Episodes $episode): Response
     {
@@ -80,6 +99,7 @@ class EpisodesController extends AbstractController
 
     /**
      * @Route("/{id}", name="episodes_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Episodes $episode): Response
     {
