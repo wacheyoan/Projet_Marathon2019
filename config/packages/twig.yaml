@@ -2,3 +2,4 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     globals:
         base_url: '%base_url%'
+        users_path : '%users_path%'
