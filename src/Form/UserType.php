@@ -6,25 +6,38 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 
 class UserType extends AbstractType
 {
+
+    private $authorizationChecker;
+
+
+    public function __construct(
+        AuthorizationCheckerInterface $authorizationChecker
+    ){
+        $this->authorizationChecker = $authorizationChecker;
+    }
+
+
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('username')
             ->add('roles')
-            ->add('password')
+            //->add('password')
             ->add('email')
             ->add('avatar')
-            ->add('created_at')
-            ->add('overview', null, ['label' => 'Petite description de vous']);
+            ->add('overview', TextareaType::class, ['label' => 'Petite description de vous']);
 
         if($options['style'] === 'register'){
             $builder->remove('roles')->remove('password')->remove('avatar')->remove('created_at');
@@ -58,6 +71,10 @@ class UserType extends AbstractType
         $entity = $event->getData(); //récupération de l'entité
 
         $entity->setCreatedAt(new \DateTime());
+
+        if($this->authorizationChecker->isGranted('ROLE_ADMIN')===true){
+
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)
