@@ -13,7 +13,7 @@
                  <p>Langue : {{ serieWithMostComments.language }}</p>
                  <p>Score : {{ serieWithMostComments.score }}</p>
                  <p>Status : {{ serieWithMostComments.status }}</p>
-                 <p>Date : {{ serieWithMostComments.premiere }}</p>
+                 <p>Date : {{ serieWithMostComments.premiere ? serieWithMostComments.premiere|date('Y-m-d') : '' }}</p>
                  <p><img src="{{ base_url~serieWithMostComments.image  }}" /></p>
              {% endif %}
          </div>
