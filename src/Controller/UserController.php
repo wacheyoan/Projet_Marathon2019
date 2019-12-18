@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Comments;
+use App\Entity\Series;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -49,6 +52,56 @@ class UserController extends AbstractController
     }
 
     /**
+     *
+     * @Route("/profil", name="user_profil", methods={"GET"})
+     *
+     */
+    public function profil(Request $request)
+    {
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $userRepository = $entityManager->getRepository(User::class);
+        $user = $this->getUser();
+        if($user) {
+            $episodes = $user->getEpisodes();
+            $series = new ArrayCollection();
+            $nbEpisodesSeen = 0;
+            $cumulativeTime = 0;
+            foreach ($episodes as $episode) {
+                $serie = $episode->getSeries();
+                $nbEpisodesSeen ++;
+                $cumulativeTime += $episode->getDuration();
+
+                if (!$series->contains($serie)) {
+                    $series[] = $serie;
+                }
+            }
+
+
+            $commentRepository = $entityManager->getRepository(Comments::class);
+
+            $comments = $commentRepository->findBy(['User' => $user]);
+
+            $nbComments = count($comments);
+
+        }
+
+
+        return $this->render('user/profil.html.twig', [
+            'series' => $series,
+            'comments' => $comments,
+            'nbEpisodesSeen' => $nbEpisodesSeen,
+            'cumulativeTime' =>$cumulativeTime,
+            'nbComments' => $nbComments,
+        ]);
+
+    }
+
+
+
+
+
+    /**
      * @Route("/{id}", name="user_show", methods={"GET"})
      */
     public function show(User $user): Response
@@ -91,4 +144,7 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('user_index');
     }
+
+
+
 }
