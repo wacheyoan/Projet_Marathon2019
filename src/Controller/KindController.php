@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Kind;
 use App\Form\KindType;
 use App\Repository\KindRepository;
+use App\Repository\SeriesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,10 +19,27 @@ class KindController extends AbstractController
     /**
      * @Route("/", name="kind_index", methods={"GET"})
      */
-    public function index(KindRepository $kindRepository): Response
+    public function index(KindRepository $kindRepository,SeriesRepository $seriesRepository): Response
     {
+
+        $series = $seriesRepository->findAll();
+
+        $kinds = [];
+        foreach ($series as $serie){
+            foreach ($serie->getKinds() as $kindSerie){
+                $kinds[$kindSerie->getName()][] = $serie;
+            }
+        }
+
+        $series = [];
+        foreach ($kinds as $kind) {
+            $series[key($kinds)]= $kind[rand(0,sizeof($kind)-1)];
+            next($kinds);
+        }
+
+        
         return $this->render('kind/index.html.twig', [
-            'kinds' => $kindRepository->findAll(),
+            'series' => $series
         ]);
     }
 

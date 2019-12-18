@@ -23,7 +23,7 @@ class CommentsRepository extends ServiceEntityRepository
     // /**
     //  * @return Comments[] Returns an array of Comments objects
     //  */
-    /*
+    /*  Kinds :
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('c')
@@ -52,13 +52,28 @@ class CommentsRepository extends ServiceEntityRepository
 
     public function findWithMostComments(){
 
-        $raw_sql = "
-            SELECT s.*
+        return $this->createQueryBuilder('c')
+            ->innerJoin('c.Series','s')
+            ->addSelect('COUNT(c) as HIDDEN nb')
+            ->groupBy('s.id')
+            ->orderBy('nb','DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+
+
+        /*$raw_sql = "
+            SELECT s.*,k.name as kind
             FROM comments c
             INNER JOIN series s
             ON s.id = c.series_id
+            INNER JOIN  series_kind sk
+            ON sk.series_id = s.id
+            INNER JOIN kind k 
+            ON k.id = sk.kind_id           
             WHERE c.id = (
-                SELECT MAX(c.id)
+                SELECT count(c.id)
                 FROM comments c
                 )
         ";
@@ -66,7 +81,7 @@ class CommentsRepository extends ServiceEntityRepository
         $query = $conn->prepare($raw_sql);
         $query->execute();
 
-        return $query->fetch();
+        return $query->fetch();*/
 
     }
 

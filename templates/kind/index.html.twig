@@ -3,33 +3,18 @@
 {% block title %}Kind index{% endblock %}
 
 {% block body %}
-    <h1>Kind index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for kind in kinds %}
-            <tr>
-                <td>{{ kind.id }}</td>
-                <td>{{ kind.name }}</td>
-                <td>
-                    <a href="{{ path('kind_show', {'id': kind.id}) }}">show</a>
-                    <a href="{{ path('kind_edit', {'id': kind.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
+    <div class="container">
+        <h1>Kind index</h1>
+    <div class="row">
+        {% for key,serie in series %}
+            <div class="col-lg-3">
+            <p>{{ key }}</p>
+            <a href="{{ path('series_show',{id:serie.id}) }}"><img src="{{ base_url~serie.image }}"></a>
+            </div>
         {% endfor %}
-        </tbody>
-    </table>
+    </div>
+    </div>
 
     <a href="{{ path('kind_new') }}">Create new</a>
 {% endblock %}

@@ -4,15 +4,23 @@
 {% block title %}Series{% endblock %}
 
 {% block body %}
-
+<div class="container">
+    <div class="row">
     <h1>{{ series.name }}</h1>
-    <img src="{{ base_url~series.image  }}"/>
-    <p>Language : {{ series.language }}</p>
-    <p>Date : {{ series.premiere ? series.premiere | date('Y-m-d') : '' }}</p>
-    <p>Score : {{ series.score ? series.score : 'No score yet'}}</p>
-    <p>Status : {{ series.status }}</p>
-    <p>Summary : {{ series.summary | raw }}</p>
-    <p>Opinion : {{ series.avis ? series.avis : 'No opinion yet' }}</p>
+    </div>
+    <div class="row">
+
+        <img src="{{ base_url~series.image  }}"/>
+    </div>
+    <div class="row">
+        <p>Language : {{ series.language }} </p>
+        <p>Date : {{ series.premiere ? series.premiere | date('Y-m-d') : '' }}</p>
+        <p>Score : {{ series.score ? series.score : 'No score yet'}}</p>
+        <p>Status : {{ series.status }}</p>
+        <p>Summary : {{ series.summary | raw }}</p>
+        <p>Opinion : {{ series.avis ? series.avis : 'No opinion yet' }}</p>
+    </div>
+        </div>
 
     <h1>Commentaires : </h1>
 
@@ -34,6 +42,7 @@
     <a href="{{ path('series_index') }}">back to list</a>
 
     <a href="{{ path('series_edit', {'id': series.id}) }}">edit</a>
+</div>
 
     {{ include('series/_delete_form.html.twig') }}
 {% endblock %}
