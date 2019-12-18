@@ -5,3 +5,13 @@
     <p><a href="{{ path('series_show',{id:serie.id}) }}"><img src="{{ base_url~serie.image  }}" /></a></p>
 
 {% endmacro %}
+
+{% macro bouton(value) %}
+
+    {% if value.validated %}
+        <a class="btn btn-danger" href="{{ path('comments_valid',{'id':value.id}) }}">Unvalid</a>
+    {% else %}
+        <a class="btn btn-success"  href="{{ path('comments_valid',{'id':value.id}) }}">Valid</a>
+    {% endif %}
+
+{% endmacro %}
