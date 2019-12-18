@@ -19,39 +19,12 @@ class SeriesRepository extends ServiceEntityRepository
         parent::__construct($registry, Series::class);
     }
 
-    // /**
-    //  * @return Series[] Returns an array of Series objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Series
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
     public function findRandoms(){
 
         $raw_sql = "
             SELECT * 
             FROM series
+            WHERE score >= 8
             ORDER BY RAND() 
             LIMIT 3
         ";
@@ -61,6 +34,23 @@ class SeriesRepository extends ServiceEntityRepository
         $query->execute();
 
         return $query->fetchAll();
+    }
+
+    public function findMostLiked(){
+
+        $raw_sql = "
+            SELECT *
+            FROM series
+            WHERE score = (
+                SELECT max(score) 
+                FROM series
+                )         
+        ";
+        $conn = $this->getEntityManager()->getConnection();
+        $query = $conn->prepare($raw_sql);
+        $query->execute();
+
+        return $query->fetch();
     }
 
 }

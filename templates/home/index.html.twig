@@ -7,13 +7,21 @@
 <div class="container">
     {% if serieWithMostComments %}
         <div class="row">
-            <div class="col-lg-12">
-                     <h1>Série la plus commentée : </h1>
-                     {{ macro.serieView(serieWithMostComments) }}
+            <div class="col-lg-6">
+                <h1>Most commented : </h1>
+                {{ macro.serieView(serieWithMostComments) }}
+            </div>
+
+    {% endif %}
+    {% if serieMostLike %}
+            <div class="col-lg-6">
+                <h1>Most Liked : </h1>
+                {{ macro.serieView(serieMostLike) }}
             </div>
         </div>
     {% endif %}
         {% if seriesRandom %}
+            <h1>You may also like : </h1>
             <div class="row">
                     {% for serie in seriesRandom %}
                          <div class="col-lg-4">

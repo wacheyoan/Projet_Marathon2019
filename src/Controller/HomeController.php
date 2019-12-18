@@ -19,10 +19,12 @@ class HomeController extends AbstractController
 
         $serieWithMostComments = $commentsRepository->findWithMostComments();
         $seriesRandom = $seriesRepository->findRandoms();
+        $serieMostLike = $seriesRepository->findMostLiked();
 
         return $this->render('home/index.html.twig',[
             'serieWithMostComments' => $serieWithMostComments,
             'seriesRandom' => $seriesRandom,
+            'serieMostLike' => $serieMostLike,
         ]);
     }
 }
