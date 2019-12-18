@@ -1,6 +1,9 @@
 {% macro serieView(serie) %}
 
     <p>Name : {{ serie.name }}</p>
+    {% for kinds in serie.kinds %}
+      {{ kinds.name }}
+    {% endfor %}
     <p>Score : {{ serie.score }}</p>
     <p><a href="{{ path('series_show',{id:serie.id}) }}"><img src="{{ base_url~serie.image  }}" /></a></p>
 

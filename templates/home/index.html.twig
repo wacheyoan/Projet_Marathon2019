@@ -5,7 +5,7 @@
 
 {% block body %}
 <div class="container">
-    {% if serieWithMostComments %}
+    {% if serieWithMostComments is defined and serieWithMostComments%}
         <div class="row">
             <div class="col-lg-6">
                 <h1>Most commented : </h1>
@@ -13,14 +13,14 @@
             </div>
 
     {% endif %}
-    {% if serieMostLike %}
+    {% if serieMostLike is defined and serieMostLike%}
             <div class="col-lg-6">
                 <h1>Most Liked : </h1>
                 {{ macro.serieView(serieMostLike) }}
             </div>
         </div>
     {% endif %}
-        {% if seriesRandom %}
+        {% if seriesRandom is defined and seriesRandom%}
             <h1>You may also like : </h1>
             <div class="row">
                     {% for serie in seriesRandom %}
