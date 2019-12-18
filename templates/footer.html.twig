@@ -6,12 +6,21 @@
         <a href="">mentions légales</a>
         <span> | </span>
         {% if is_granted('ROLE_USER') %}
+<<<<<<< HEAD
+        <a href="{{ path('app_logout') }}" role="button">
+            Disconnect
+        </a>
+        {% else %}
+        <a role="button" href="{{ path('app_login') }}">Connexion</a>
+        <a role="button" href="{{ path('app_register') }}">Inscription</a>
+=======
             <a href="{{ path('app_logout') }}" role="button">
                 Disconnect
             </a>
         {% else %}
             <a role="button" href="{{ path('app_login') }}">Connexion</a>
             <a role="button" href="{{ path('app_register') }}">Inscription</a>
+>>>>>>> 8dad4a08ee0a537c61802f1fe0888317fee70b1c
         {% endif %}
     </div>
     <div class="footer_mentions">

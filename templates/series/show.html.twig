@@ -3,52 +3,32 @@
 {% block title %}Series{% endblock %}
 
 {% block body %}
-    <h1>Series</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ series.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ series.name }}</td>
-            </tr>
-            <tr>
-                <th>Summary</th>
-                <td>{{ series.summary }}</td>
-            </tr>
-            <tr>
-                <th>Language</th>
-                <td>{{ series.language }}</td>
-            </tr>
-            <tr>
-                <th>Score</th>
-                <td>{{ series.score }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ series.status }}</td>
-            </tr>
-            <tr>
-                <th>Premiere</th>
-                <td>{{ series.premiere ? series.premiere|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Url</th>
-                <td>{{ series.url }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ series.image }}</td>
-            </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ series.createdAt ? series.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <h1>{{ series.name }}</h1>
+    <img src="{{ base_url~series.image  }}"/>
+    <p>Language : {{ series.language }}</p>
+    <p>Date : {{ series.premiere ? series.premiere | date('Y-m-d') : '' }}</p>
+    <p>Score : {{ series.score ? series.score : 'No score yet'}}</p>
+    <p>Status : {{ series.status }}</p>
+    <p>Summary : {{ series.summary | raw }}</p>
+    <p>Opinion : {{ series.avis ? series.avis : 'No opinion yet' }}</p>
+
+    <h1>Commentaires : </h1>
+
+    {% for comment in comments  %}
+        {% if comment.validated %}
+        <p>Contenu : {{ comment.content }}</p>
+        {% endif %}
+    {% endfor %}
+
+
+    <h1>Episodes :</h1>
+    {% for keys,season in seasons  %}
+        <h3>{{ keys }}</h3>
+        {% for episode in season %}
+            <a href="{{ path('episodes_show',{'id':episode.id}) }}"><img src="{{ base_url~episode.image  }}"/></a>
+            {% endfor %}
+    {% endfor %}
 
     <a href="{{ path('series_index') }}">back to list</a>
 
