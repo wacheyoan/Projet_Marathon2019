@@ -55,3 +55,36 @@ a {
 
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap');
+
+
+
+
+
+.movie_present {
+  display: flex;
+  flex-direction: column;
+  .movie_present_posttitle {
+      color: $c-white;
+      font-size: $title-size-large*1.75;
+      b {
+          color:$c-primary;
+      }
+  }
+  .movie_presentation {
+      display: flex;
+      img {
+
+      }
+      .movie_description {
+          display: flex;
+          flex-direction: column;
+          h4 {
+              font-size: $title-size-large*1.5;
+          }
+          p {
+              font-size: $text-size-large;
+          }
+      }
+  }
+}
+

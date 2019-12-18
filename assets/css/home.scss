@@ -1,41 +1,49 @@
+.presentation, .most_commented {
+    font-family: "Public Sans";
+}
+
 .presentation {
     display: flex;
     justify-content: space-between;
+    margin-top: $spacing-large*2;
+    @include screen-md() {
+        flex-direction: column;
+    }
     .presentation_content {
+        margin: 0px 12% 0px 8%;
+        width: 60%;
+        align-self: center;
+        @include screen-md() {
+            margin: 0px 6% 0px 4%;
+            width: 60%;
+        }
+        @include screen-sm() {
+            padding: 0px $spacing-large;
+            width: 100%;
+        }
         h1 {
-            font-size: $text-size-large*2;;
+            font-size: $title-size-large*2;;
         }
         p {
-
-        }
-        a {
-
+            font-size: $text-size-large;
+            margin: $spacing-large*2 0px;
         }
     }
     .presentation_image {
         img {
-
+            height:$img-present-size;          
         }
-    }
-}
-
-.recommandation_list {
-    display: flex;
-    justify-content: space-between;
-}
-
-.trending {
-    display: flex;
-    flex-direction: column;
-
-    .trending_movie {
-        display: flex;
-        flex-direction: row;
-
-        .movie_description {
+        @include screen-md() {
             display: flex;
-            flex-direction: column;
+            img {
+                margin-left: auto;
+                height:$img-present-size*0.8;
+                }
+            } 
+        @include screen-sm() {
+            display: none;
         }
-
     }
 }
+
+
