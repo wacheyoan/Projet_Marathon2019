@@ -1,4 +1,9 @@
-@import "global";
+body {
+    background-color: lightgray;
+    font-family: "Public Sans";
+}
+
+@import "global.scss";
 
 @import "variable";
 @import "global";
