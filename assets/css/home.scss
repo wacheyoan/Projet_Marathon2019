@@ -23,3 +23,19 @@
     display: flex;
     justify-content: space-between;
 }
+
+.trending {
+    display: flex;
+    flex-direction: column;
+
+    .trending_movie {
+        display: flex;
+        flex-direction: row;
+
+        .movie_description {
+            display: flex;
+            flex-direction: column;
+        }
+
+    }
+}
