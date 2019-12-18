@@ -47,6 +47,20 @@ class SeriesRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findRandoms(){
 
+        $raw_sql = "
+            SELECT * 
+            FROM series
+            ORDER BY RAND() 
+            LIMIT 3
+        ";
+
+        $conn = $this->getEntityManager()->getConnection();
+        $query = $conn->prepare($raw_sql);
+        $query->execute();
+
+        return $query->fetchAll();
+    }
 
 }

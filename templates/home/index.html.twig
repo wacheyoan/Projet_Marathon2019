@@ -1,25 +1,25 @@
 {% extends 'base.html.twig' %}
+{% import 'macros.html.twig' as macro %}
 
 {% block title %}Home Page !{% endblock %}
 
 {% block body %}
 <div class="container">
-    <div class="row">
-         <div class="col-lg-6">
-             {% if serieWithMostComments %}
-                 <h1>Série la plus commentée :</h1>
-                 <p>Nom : {{ serieWithMostComments.name }}</p>
-                 {{ serieWithMostComments.summary | raw}}
-                 <p>Langue : {{ serieWithMostComments.language }}</p>
-                 <p>Score : {{ serieWithMostComments.score }}</p>
-                 <p>Status : {{ serieWithMostComments.status }}</p>
-                 <p>Date : {{ serieWithMostComments.premiere ? serieWithMostComments.premiere|date('Y-m-d') : '' }}</p>
-                 <p><img src="{{ base_url~serieWithMostComments.image  }}" /></p>
-             {% endif %}
-         </div>
-        <div class="col-lg-6">
-
+    {% if serieWithMostComments %}
+        <div class="row">
+            <div class="col-lg-12">
+                     <h1>Série la plus commentée : </h1>
+                     {{ macro.serieView(serieWithMostComments) }}
+            </div>
         </div>
-    </div>
-</div>
+    {% endif %}
+        {% if seriesRandom %}
+            <div class="row">
+                    {% for serie in seriesRandom %}
+                         <div class="col-lg-4">
+                         {{ macro.serieView(serie) }}
+                        </div>
+                    {% endfor %}
+            </div>
+        {% endif %}
 {% endblock %}
