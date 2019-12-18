@@ -1,32 +1,27 @@
 <section class="footer container">
     <div class="footer_link">
-        <a href="">Accueil</a>
-        <a href="">Liste des séries</a>
-        <a href="">Catégories</a>
-        <a href="">mentions légales</a>
-        <span> | </span>
-        {% if is_granted('ROLE_USER') %}
-<<<<<<< HEAD
-        <a href="{{ path('app_logout') }}" role="button">
-            Disconnect
-        </a>
-        {% else %}
-        <a role="button" href="{{ path('app_login') }}">Connexion</a>
-        <a role="button" href="{{ path('app_register') }}">Inscription</a>
-=======
-            <a href="{{ path('app_logout') }}" role="button">
-                Disconnect
-            </a>
-        {% else %}
-            <a role="button" href="{{ path('app_login') }}">Connexion</a>
-            <a role="button" href="{{ path('app_register') }}">Inscription</a>
->>>>>>> 8dad4a08ee0a537c61802f1fe0888317fee70b1c
-        {% endif %}
+        <div class="footer_link_items">
+            <a href="">Accueil</a>
+            <a href="">Liste des séries</a>
+            <a href="">Catégories</a>
+            <a href="">mentions légales</a>
+            <span> | </span>
+            {% if is_granted('ROLE_USER') %}
+                <a href="{{ path('app_logout') }}" role="button">
+                    Disconnect
+                </a>
+            {% else %}
+                <a role="button" href="{{ path('app_login') }}">Connexion</a>
+                <a role="button" href="{{ path('app_register') }}">Inscription</a>
+            {% endif %}
+        </div>
     </div>
     <div class="footer_mentions">
-        <a href="">
-            <img src="" alt="">
-        </a>
-        <span>created by Team Synsy</span>
+        <div class="footer_mentions_items">
+            <a href="">
+                <img src="{{ asset("images/logos/Logo2x.png") }}" alt="">
+            </a>
+            <span>created by Team Synsy</span>
+        </div>
     </div>
 </section>

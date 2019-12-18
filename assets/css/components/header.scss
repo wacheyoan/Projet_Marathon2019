@@ -1,0 +1,32 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  background-color: $c-black;
+  .footer_link {
+    display: flex;
+    margin:auto;
+    .footer_link:nth-child() {
+      margin-right:2rem;
+    }
+    a {
+      text-decoration: none;
+      color: $c-white;
+    }
+
+    span {
+    }
+  }
+
+  .footer_mentions {
+    display: flex;
+    margin:auto;
+    a {
+      img {
+      }
+    }
+
+    span {
+      color:$c-white;
+    }
+  }
+}
