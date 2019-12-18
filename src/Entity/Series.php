@@ -23,6 +23,12 @@ class Series
      */
     private $name;
 
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $avis;
+
     /**
      * @ORM\Column(type="text")
      */
@@ -89,6 +95,20 @@ class Series
 
         return $this;
     }
+
+
+    public function getAvis(): ?string
+    {
+        return $this->avis;
+    }
+
+    public function setAvis(string $avis): self
+    {
+        $this->avis = $avis;
+
+        return $this;
+    }
+
 
     public function getSummary(): ?string
     {
