@@ -4,19 +4,27 @@
 
 {% block body %}
     <div class="container">
-    <h1>All Episodes</h1>
-
-        {% for episode in episodes %}
-            <div class="row">
-                <a href="{{ path('episodes_show',{'id':episode.id}) }}">
-                    <img src="{{ episode.image ? base_url~episode.image : base_url~episode.Series.image}}">
-                </a>
-                <span>{{ episode.series.name }} S{{ episode.season }} Episode {{ episode.number }}</span>
-                <span>{{ episode.premiere ? episode.premiere | date('Y-m-d') : ''}}</span>
+        <h2>All Episodes</h2>
+        <div class="cards">
+            <div class="cards_list">
+            {% for episode in episodes %}
+                <div class="card_item">
+                    <a href="{{ path('episodes_show',{'id':episode.id}) }}">
+                        <span class="blackBG"></span>
+                    </a>
+                    <a href="{{ path('episodes_show',{'id':episode.id}) }}">
+                        <img src="{{ episode.image ? base_url~episode.image : base_url~episode.Series.image}}">
+                    </a>
+                    <div class="movie_present_desc">
+                        <h4 class="movie_present_desc_title">{{ episode.series.name }} S{{ episode.season }} Episode {{ episode.number }}</h4>
+                        <p class="movie_summary">{{ episode.premiere ? episode.premiere | date('Y-m-d') : ''}}</p>
+                    </div>
+                </div>
+            {% else %}
+                no records found
+            {% endfor %}
             </div>
-           {% else %}
-            no records found
-        {% endfor %}
+        </div>
     </div>
     {% include 'pagination.html.twig' %}
 
