@@ -1,4 +1,4 @@
-.presentation, .most_commented {
+.presentation, .most_commented, .trending {
     font-family: "Public Sans";
 }
 
@@ -46,4 +46,17 @@
     }
 }
 
-
+.trending {
+    .movie_present_pretitle {
+        margin-left:auto;
+    }
+    .movie_presentation  {
+        justify-content: flex-end;
+        img {
+            order: 2;
+        }        
+    }
+    .mediator {
+        left: 70% !important;
+    }
+}
