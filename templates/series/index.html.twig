@@ -5,7 +5,32 @@
 {% block body %}
     <h1>Series index</h1>
 
-    <table class="table">
+    {% if series %}
+    <div class="cards">
+        <div class="cards_list">
+            {% for series in series %}
+                <div class="card_item">
+                    <a href="/series/37">
+                        <span class="blackBG"></span>
+                    </a>
+                    <div class="movie_presentation">
+                        <img src="{{ base_url~series.image }}" alt="{{ series.name }}" height="400px">
+                        <div class="movie_present_desc">
+                            <h4 class="movie_present_desc_title">{{ series.name }}</h4>
+                            <p class="movie_summary">{{ series.summary | raw }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        </div>
+    </div>
+    {% endif %}
+        
+    <!-- <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -45,7 +70,7 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+    </table> -->
 
     <a href="{{ path('series_new') }}">Create new</a>
 {% endblock %}

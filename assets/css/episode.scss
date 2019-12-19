@@ -1,0 +1,169 @@
+.container{
+  font-family: "Public Sans";
+  max-width:1296px;
+  margin:auto;
+  padding: 0% 5%;
+}
+
+.textOrange{
+  color:#FB9106;
+}
+
+.shape_1_orange{
+  position: absolute;
+  left:-400px;
+  z-index: 1;
+}
+
+.shape_2_photo{
+  position: absolute;
+  z-index: 3;
+  top:400px;
+  left:200px;
+}
+
+.container_shape{
+  position: absolute;
+  right: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  z-index: -1000;
+}
+
+.shape_3_grise{
+  position: absolute;
+  right:-500px;
+  top:100px;
+}
+
+.serie-img {
+  clip-path: url(#svgPath);
+  transform: scale(2,2);
+}
+
+.container_titre{
+  max-width: 1096px;
+  margin:auto;
+}
+
+.container_titre h1, .container_titre p{
+  display:inline;
+  margin: 0px 20px;
+}
+
+.container_titre i{
+  color: #FB9106;
+  font-size:20px;
+  margin-right:5px;
+}
+
+.container_titre p{
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 28px;
+}
+
+.titre_serie{
+  font-size:64px;
+}
+
+.container_infos{
+  max-width: 796px;
+  margin: auto;
+  padding: 0% 33% 0% 15%;
+}
+
+.container_infos h2{
+  font-size:21px;
+  margin-bottom: 20px;
+}
+
+.container_infos p{
+  margin : 40px 0px 50px 0px;
+}
+
+.container ul{
+  padding:0;
+}
+
+.container_infos li {
+  font-size: 18px;
+  list-style-type:none;
+  margin-bottom: 5px;
+}
+
+.container_com{
+  margin-top: 45vh;
+  margin-bottom: 10vh;
+}
+
+
+.container_com h1{
+  font-family: 36px;
+  font-family: "Poppins";
+}
+
+.com{
+  display:grid;
+  grid-template-columns: 100px 1fr;
+  margin-bottom:30px;
+}
+
+.com h2{
+  font-size:21px;
+}
+
+.textes_com p{
+  margin:0;
+  font-size:17px;
+}
+
+.com img{
+  height:75px;
+  width:75px;
+  object-fit: cover;
+  border-radius: 100%;
+  margin-top:30px;
+}
+
+.container_episodes h1{
+  font-family: 36px;
+  font-family: "Poppins";
+}
+
+.list_episodes{
+  display: flex;
+  overflow-y: scroll;
+}
+
+.episode{
+  margin-right:30px;
+}
+
+.container_buttons{
+  margin-top:50px;
+  margin-bottom:50px;
+}
+
+.container_buttons a{
+  text-decoration: none;
+  font-family: 'Poppins';
+  font-size: 18px;
+  color:black;
+}
+
+.container_buttons a:first-child{
+  margin-right: 35px;
+}
+
+.orange {
+  color: $c-primary;
+  margin-right:$spacing-medium;
+}
+
+@media screen and (max-width: 1024px) {
+  .shape_1_orange, .serie-img, .shape_2_photo{display:none;}
+  .container_infos{padding:0}
+  .container_shape{height:130%}
+}
