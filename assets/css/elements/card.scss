@@ -1,22 +1,78 @@
-.recommandation_item {
-  box-shadow: 0px 13px 7px #00000024;
-  border-radius: 10px;
-  opacity: 1;
-
-  height: 380px;
-  max-width: 300px;
-
-  overflow: hidden;
-  display: flex;
-
-  img {
-    transition: transform .4s ease;
-    height: auto;
-    width: auto;
-  }
-
-  &:hover img {
-    transform: scale(1.1);
-  }
-
+.cards {
+    .cards_list{
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        @include screen-md {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        @include screen-sm  {
+            grid-template-columns: 1fr 1fr;
+        }
+        .card_item{
+            max-height:295px;
+            max-width:210px;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            margin:0px 20px 20px 0px;
+            .blackBG{
+                height:100%;
+                width:100%;
+                z-index: 3;
+                position:absolute;
+                background: transparent linear-gradient(180deg, #00000000 0%, #000000B5 100%) 0% 0% no-repeat padding-box;
+                opacity: 0;
+                transition: opacity .2s ease-in-out;
+            }
+            h4{
+                z-index: 4;
+                position:absolute;
+                top:50%;
+                left:50%; 
+                text-align:center;
+                transform: translateX(-50%) translateY(-50%);
+                color:white;
+                opacity: 0;
+                transition: opacity .2s ease-in-out;
+                font-size:16px;
+            }
+            p.movie_summary {
+                z-index: 4;
+                position:absolute;
+                top:75%;
+                left:50%; 
+                text-align:center;
+                transform: translateX(-50%) translateY(-50%);
+                color:white;
+                opacity: 0;
+                transition: opacity .2s ease-in-out;
+                font-size:14px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 200px;
+            }
+            .note{
+                font-family: 'Poppins','Arial';
+                margin-top:25px;
+                z-index: 4;
+                position:absolute;
+                top:80%;
+                left:50%; 
+                text-align:center;
+                transform: translateX(-50%) translateY(-50%);
+                color:white;
+                opacity: 0;
+                transition: opacity .2s ease-in-out;
+                i{
+                    color:white;
+                    font-size: 10px;
+                    top:-10%;
+                }
+            }
+            &:hover .blackBG, &:hover h4, &:hover p,  &:hover p.movie_summary {
+                opacity: 1;
+            }
+        }
+    }
 }

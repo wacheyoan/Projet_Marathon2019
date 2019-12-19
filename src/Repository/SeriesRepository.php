@@ -31,7 +31,7 @@ class SeriesRepository extends ServiceEntityRepository
 
     public function findRandoms(){
 
-        $quantity = 3;
+        $quantity = 5;
 
 
         $totalRowsTable = $this->createQueryBuilder('s')
