@@ -6,7 +6,7 @@
 
 <div class="container">
     <h1><a href="{{ path('series_show',{'id':episode.series.id}) }}">{{ episode.series.name }}</a> S{{ episode.season }} - Episode {{ episode.number }} ({{ episode.duration }}min)</h1>
-    <img src="{{ episode.image ? base_url~episode.image :base_url~'/img/blanck.jpg' }}">
+    <img src="{{ episode.image ? base_url~episode.image :base_url~episode.Series.image }}">
     <span>Premiere : {{ episode.premiere ? episode.premiere | date('Y-m-d') : ''}}</span>
     <p>Summary : {{ episode.summary |raw }}</p>
 </div>
