@@ -3,28 +3,33 @@
     <div class="navbar-items">
 
         {% set currentPath = path(app.request.attributes.get('_route'),
-            app.request.attributes.get('_route_params')) %}
+            app.request.attributes.get('_route_params'))|split('/') %}
 
 
-            <a class="navbar-item {{ macro.currentPath(path('episodes_index',{'page':1}),currentPath) }}"
-               href="{{ path('episodes_index',{'page':1}) }}">Episodes</a>
+        <a class="navbar-item {{ macro.currentPath(path('episodes_index',{'page':1}),currentPath) }}"
+           href="{{ path('episodes_index',{'page':1}) }}"
+           style="{{ currentPath[1] == "episodes" ? "font-weight: 700":"" }}">Episodes</a>
 
-            <a class="navbar-item {{ macro.currentPath(path('series_index'),currentPath) }}"
-               href="{{ path('series_index') }}">Séries</a>
+        <a class="navbar-item {{ macro.currentPath(path('series_index'),currentPath) }}"
+           href="{{ path('series_index') }}" style="{{ currentPath[1] == "series" ? "font-weight: 700":"" }}">Séries</a>
 
-            <a class="navbar-item {{ macro.currentPath(path('kind_index'),currentPath) }}"
-               href="{{ path('kind_index') }}">Catégories</a>
+        <a class="navbar-item {{ macro.currentPath(path('kind_index'),currentPath) }}"
+           href="{{ path('kind_index') }}" style="{{ currentPath[1] == "kind" ? "font-weight: 700":"" }}">Catégories</a>
 
-            <a href="{{ path('home') }}"><img src="{{ asset('images/logos/Logo_carre.svg') }}"
-                                              alt="logo de Kino" height="100px"></a>
+        <a href="{{ path('home') }}"><img src="{{ asset('images/logos/Logo_carre.svg') }}"
+                                          alt="logo de Kino" height="100px"></a>
 
-            <a class="navbar-item {{ macro.currentPath( path('home'),currentPath) }}"
-               href="{{ path('home') }}">Accueil</a>
+        <a class="navbar-item {{ macro.currentPath( path('home'),currentPath) }}"
+           href="{{ path('home') }}" style="{{ currentPath[1] == "" ? "font-weight: 700":"" }}">Accueil</a>
 
         {% if is_granted('ROLE_USER') %}
+            <a class="navbar-item" href="{{ path('app_logout') }}" role="button">
+                Déconnexion
+            </a>
             <div>
                 <a class="navbar-item  {{ macro.currentPath(path('user_profil'),currentPath) }}"
-                   href="{{ path('user_profil') }}" role="button">
+                   href="{{ path('user_profil') }}" style="{{ currentPath[1] == "user" ? "font-weight: 700":"" }}"
+                   role="button">
                     {{ app.user.username }}
                     {% if is_granted('ROLE_ADMIN') %}
                         Administrateur
@@ -36,14 +41,13 @@
                             alt=""></a>
 
             </div>
-            <a class="navbar-item" href="{{ path('app_logout') }}" role="button">
-                Déconnexion
-            </a>
         {% else %}
             <a class="navbar-item {{ macro.currentPath(path('app_login'),currentPath) }}"
+               style="{{ currentPath[1] == "login" ? "font-weight: 700":"" }}"
                role="button" href="{{ path('app_login') }}">Connexion</a>
 
             <a class="navbar-item {{ macro.currentPath(path('app_register'),currentPath) }}"
+               style="{{ currentPath[1] == "register" ? "font-weight: 700":"" }}"
                role="button" href="{{ path('app_register') }}">Inscription</a>
 
         {% endif %}
