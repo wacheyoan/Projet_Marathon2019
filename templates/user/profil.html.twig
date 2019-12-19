@@ -3,38 +3,52 @@
 {% block title %}User Profile{% endblock %}
 
 {% block body %}
-    <h1>My Profile</h1>
-
-        {% for serie in series %}
-                <a href="{{ path('series_show',{'id':serie.id}) }}"><img src="{{ base_url~serie.image }}" /></a>
-                {{ serie.name }}
-        {% else %}
-                 <h1>PAS VU DE SERIE</h1>
-        {% endfor %}
-
-    <h1>Mes commentaires :</h1>
-        {% for comment in comments %}
-            <div class="row">
-                <span>Contenu : {{ comment.content }}</span>
-                <span>{{ comment.validated ? 'Validé' : 'Pas encore validé' }}</span>
-                <span>Date : {{ comment.createdAt ? comment.createdAt | date('d-m-Y : H:i') : ''}}</span>
-                <span>Nom série : <a href="{{ path('series_show',{'id':comment.Series.id}) }}">{{ comment.Series.name }}</a></span>
+    <div class="container">
+        <div class="profile_container">
+            <div class="profile_picture">
+                <img src="{{ asset("images/users/"~app.user.avatar) }}"
+                     alt="photo de profile de {{ app.user.username }}">
             </div>
-            <br>
-        {% endfor %}
+            <div class="profile_informations">
+                <div class="profile_nom">
+                    <h3>{{ app.user.username }}</h3>
+                    <h5>Inscrit(e) depuis le {{ app.user.createdat|date('d/m/Y') }} </h5>
+                </div>
+                <div class="profile_stats">
+                    <div class="watchtime">
+                        <span class="important">{{ cumulativeTime }}</span>
+                        <span>Temps de visionnage</span>
+                    </div>
+                    <div class="episodes_vus">
+                        <span class="important">{{ nbEpisodesSeen }}</span>
+                        <span>Episodes vus</span>
+                    </div>
+                    <div class="commentaires">
+                        <span class="important">{{ nbComments }}</span>
+                        <span>Commentaires rédigés</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <h1>Statistiques :</h1>
-    <table>
-        <tr>
-            <th>Total épisodes vus</th>
-            <th>Temps total</th>
-            <th>Nombre commentaires</th>
-        </tr>
-        <tr>
-            <td>{{ nbEpisodesSeen }}</td>
-            <td>{{ cumulativeTime }}min</td>
-            <td>{{ nbComments }}</td>
-        </tr>
-    </table>
+        {% if comments %}
+            <div class="container_com">
+                <h1>Derniers <span class="textOrange">commentaires</span> rédigés</h1>
+                <div class="list_com">
+                    {% for comment in comments %}
+                        {% if comment.validated or is_granted('ROLE_ADMIN') %}
+                            <div class="com">
+                                <img src="{{ asset("images/users/"~comment.User.avatar) }}" alt="">
+                                <div class="textes_com">
+                                    <h2>{{ comment.user }}</h2>
+                                    {{ comment.content|raw }}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
 
 {% endblock %}

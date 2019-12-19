@@ -3,13 +3,19 @@
 {% block title %}Edit User{% endblock %}
 
 {% block body %}
-    <h1>Edit User</h1>
+    <div class="container">
+        <div class="form_container">
+            <h3>Edit User</h3>
 
-    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+            {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <img style="max-width:150px;" src="{{ asset(users_path~'/'~user.getAvatar())}}" class="img-thumbnail"/>
+            <!-- <img style="max-width:150px;" src="{{ asset(users_path~'/'~user.getAvatar())}}" class="img-thumbnail"/> -->
 
-    <a href="{{ path('user_index') }}">back to list</a>
+            <a href="{{ path('user_index') }}">Retour à la liste des utilisateurs</a>
 
-    {{ include('user/_delete_form.html.twig') }}
+            {{ include('user/_delete_form.html.twig') }}
+
+        </div>
+    </div>
+
 {% endblock %}

@@ -10,7 +10,11 @@ body {
   flex-direction: column;
 }
 
-
+.container {
+  width: 1296px;
+  margin:auto;
+  padding:0;
+}
 
 .container h2 {
   margin-bottom: 1rem;

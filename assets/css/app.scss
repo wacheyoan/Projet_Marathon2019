@@ -10,6 +10,7 @@
 @import "elements/card";
 @import "404";
 @import "episode";
+@import "profile";
 
 @import "components/footer";
 @import "components/header";
@@ -17,3 +18,11 @@
 @import "elements/button";
 @import "elements/form";
 @import "elements/pagination";
+
+
+.container{
+    font-family: "Public Sans";
+    max-width:1296px;
+    margin:auto;
+    padding: 0% 5%;
+  }
