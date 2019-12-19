@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Series index</h1>
 
-    {% if series %}
+    {% if series is defined%}
     <div class="cards">
         <div class="cards_list">
             {% for series in series %}
@@ -22,55 +22,33 @@
                     </div>
                 </div>
             {% endfor %}
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        </div>
-    </div>
     {% endif %}
-        
-    <!-- <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Summary</th>
-                <th>Language</th>
-                <th>Score</th>
-                <th>Status</th>
-                <th>Premiere</th>
-                <th>Url</th>
-                <th>Image</th>
-                <th>Created_at</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for series in series %}
-            <tr>
-                <td>{{ series.id }}</td>
-                <td>{{ series.name }}</td>
-                <td>{{ series.summary|raw }}</td>
-                <td>{{ series.language }}</td>
-                <td>{{ series.score }}</td>
-                <td>{{ series.status }}</td>
-                <td>{{ series.premiere ? series.premiere|date('Y-m-d') : '' }}</td>
-                <td>{{ series.url }}</td>
-                <td><img src="{{ base_url~series.image }}" /></td>
-                <td>{{ series.createdAt ? series.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('series_show', {'id': series.id}) }}">show</a>
-                    <a href="{{ path('series_edit', {'id': series.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
+
+            {% set MySeries = []%}
+    {% if search is defined %}
+        {% for episodes in search %}
+            {% if episodes.Series not in MySeries %}
+                {% set MySeries = MySeries|merge([episodes.Series]) %}
+            {% endif %}
         {% endfor %}
-        </tbody>
-    </table> -->
+            <div class="cards">
+                <div class="cards_list">
+        {% for series in MySeries %}
+            <div class="card_item">
+                <a href="/series/37">
+                    <span class="blackBG"></span>
+                </a>
+                <div class="movie_presentation">
+                    <img src="{{ base_url~series.image }}" alt="{{ series.name }}" height="400px">
+                    <div class="movie_present_desc">
+                        <h4 class="movie_present_desc_title">{{ series.name }}</h4>
+                        <p class="movie_summary">{{ series.summary | raw }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    {% endif %}
 
     <a href="{{ path('series_new') }}">Create new</a>
 {% endblock %}
