@@ -4,20 +4,56 @@
 
 {% block body %}
 
-<div class="container">
-    <h1><a href="{{ path('series_show',{'id':episode.series.id}) }}">{{ episode.series.name }}</a> S{{ episode.season }} - Episode {{ episode.number }} ({{ episode.duration }}min)</h1>
-    <img src="{{ episode.image ? base_url~episode.image :base_url~episode.Series.image }}">
-    <span>Premiere : {{ episode.premiere ? episode.premiere | date('Y-m-d') : ''}}</span>
-    <p>Summary : {{ episode.summary |raw }}</p>
-</div>
-
-    <a href="{{ path('series_show',{'id':episode.series.id}) }}">Accès à la série</a>
-    <a href="{{ path('episodes_index',{'page':1}) }}">Retour à la liste épisodes</a>
-
-    {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('episodes_edit', {'id': episode.id}) }}">edit</a>
-        {{ include('episodes/_delete_form.html.twig') }}
-    {% endif %}
+    <div class="container_shape">
+        <svg class="shape_3_grise" xmlns="http://www.w3.org/2000/svg" width="900" height="800"
+             viewBox="0 0 161.451 189.135">
+            <defs>
+                <style>.a {
+                        fill: rgba(0, 0, 0, 0.05);
+                    }</style>
+            </defs>
+            <path class="a"
+                  d="M.589-195.7A100.17,100.17,0,0,1,13.181-111.07C4.786-84.29-15.789-63.122-39.42-53.815c-23.632,9.261-50.366,6.661-67.108-5.611-16.789-12.318-23.632-34.307-29.927-57.619s-12.044-47.948-2.281-71.625c9.809-23.677,35.128-46.4,63.185-48.541C-47.5-239.4-16.7-221.108.589-195.7Z"
+                  transform="translate(143.97 237.389)"/>
+        </svg>
+    </div>
+    <svg class="shape_1_orange" xmlns="http://www.w3.org/2000/svg" width="956.679" height="951.096"
+         viewBox="0 0 956.679 951.096">
+        <defs>
+            <style>.shape_1_orange .a {
+                    fill: #fb9106;
+                }</style>
+        </defs>
+        <g transform="translate(105.366 98.071)">
+            <path class="a"
+                  d="M409.691,3.625C484.25,107.969,555.773,203.966,544.39,291.8c-11.383,88.029-105.672,167.9-208.5,209.447-102.826,41.738-214.38,45.153-317.016,5.312S-177.672,383.817-196.643,287.441-159.459,81.409-84.331-22.935C-9.2-127.469,85.276-226.691,171.407-220.051,257.349-213.221,334.943-100.719,409.691,3.625Z"
+                  transform="translate(465.326 163.115) rotate(71)"/>
+        </g>
+    </svg>
+    <img src="{{ episode.image ? episode.image : episode.Series.image}}" class="serie-img shape_2_photo" width="170"/>
+    <svg>
+        <defs>
+            <clipPath id="svgPath" clipPathUnits="userSpaceOnUse">
+                <path class="a"
+                      d="M.589-195.7A100.17,100.17,0,0,1,13.181-111.07C4.786-84.29-15.789-63.122-39.42-53.815c-23.632,9.261-50.366,6.661-67.108-5.611-16.789-12.318-23.632-34.307-29.927-57.619s-12.044-47.948-2.281-71.625c9.809-23.677,35.128-46.4,63.185-48.541C-47.5-239.4-16.7-221.108.589-195.7Z"
+                      transform="translate(143.97 237.389)"/>
+            </clipPath>
+        </defs>
+    </svg>
+    <div class="container">
+        <div class="container_titre">
+            <h1 class="titre_serie">{{ episode.name }}</h1>
+            <p>saison <span class="orange">{{ episode.season }}</span> Episode <span class="orange">{{ episode.number }}</span></p>
+        </div>
+        <div class="container_infos">
+            {{ episode.summary|raw }}
+            <h2>Informations sur l'<span class="orange">épisode</span></h2>
+            <ul>
+                <li>Durée: {{ episode.duration }} minutes</li>
+                <li>Première diffusion: {{ episode.premiere|date('d/m/Y') }}</li>
+            </ul>
+        </div>
+    </div>
 
 
 {% endblock %}
