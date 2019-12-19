@@ -3,7 +3,6 @@
     <div class="navbar-items">
         {% set currentPath = path(app.request.attributes.get('_route'),
             app.request.attributes.get('_route_params')) %}
-        {{ dump(currentPath) }}
 
         {% if is_granted('ROLE_USER') %}
             <a class="navbar-item" href="{{ path('app_logout') }}" role="button">
