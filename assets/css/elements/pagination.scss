@@ -1,0 +1,13 @@
+.pagination {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none; 
+    text-align:center;
+    margin:auto;
+    li {
+        margin: 0.5rem;
+        a {
+            text-decoration: none;
+        }
+    }
+}
