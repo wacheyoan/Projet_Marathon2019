@@ -9,7 +9,7 @@
         {% for episode in episodes %}
             <div class="row">
                 <a href="{{ path('episodes_show',{'id':episode.id}) }}">
-                    <img src="{{ episode.image ? base_url~episode.image : base_url~'/img/blanck.jpg'}}">
+                    <img src="{{ episode.image ? base_url~episode.image : base_url~episode.Series.image}}">
                 </a>
                 <span>{{ episode.series.name }} S{{ episode.season }} Episode {{ episode.number }}</span>
                 <span>{{ episode.premiere ? episode.premiere | date('Y-m-d') : ''}}</span>
