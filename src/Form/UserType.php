@@ -65,7 +65,9 @@ class UserType extends AbstractType
                     'required' => false,
                     'constraints' => [new NotBlank()]
                 ]);
-            $builder->add(
+                $builder->remove('overview');
+                $builder->add('overview', TextareaType::class, ['label' => 'Petite description de vous']);
+                $builder->add(
                 'submit',
                 SubmitType::class,
                 ['label' => 'S\'inscrire', 'attr' => ['class' => 'btn btn-success']]
