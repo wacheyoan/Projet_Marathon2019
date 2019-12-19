@@ -5,6 +5,13 @@
 {% block body %}
     <h1>Series index</h1>
 
+    {% if form is defined %}
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+        {{ form_end(form) }}
+    {% endif %}
+
+
     {% if series is defined%}
     <div class="cards">
         <div class="cards_list">

@@ -60,18 +60,22 @@
             <img src="./img/serie.jpg" alt="">
         </a> -->
 
+    {% if serieWithMostComments is defined  %}
     <div class="movie_present most_commented">
         <h3 class="movie_present_pretitle" >La série la <b>plus commentée</b></h3>
         {{ macro.serieView(serieWithMostComments) }}
         <img class="mediator" src="{{asset("images/home/forme_hp_1.svg") }}" alt="">
     </div>
-
+    {% endif %}
+    {% if serieMostLike  is defined %}
     <div class="movie_present trending">
         <h3 class="movie_present_pretitle" >La série <b>favorite</b></h3>
         {{ macro.serieView(serieMostLike) }}
         <img class="mediator" src="{{asset("images/home/forme_hp_2.svg") }}" alt="">
     </div>
+    {% endif %}
 
+    {% if serieMostViewed  is defined %}
     <div class="movie_present most_viewed">
         <h3 class="movie_present_pretitle" >La série la <b>plus vue</b></h3>
         {% if serieMostViewed %}
@@ -79,40 +83,7 @@
         {% endif %}
         <img class="mediator" src="{{asset("images/home/forme_hp_1.svg") }}" alt="">
     </div>
-    
+    {% endif %}
 
-    <!--TODO
 
-    seriesRandom
-    DONE seriesLes plus vues
-
-    -->
-{#    {% if serieMostViewed %}#}
-{#        {{ macro.serieView(serieMostViewed) }}#}
-{#    {% endif %}#}
-
-    <!-- <div class="container">
-    {% if serieWithMostComments %}
-    <div class="row">
-        <div class="col-lg-6">
-            <h1>Most commented : </h1>
-            {{ macro.serieView(serieWithMostComments) }}
-        </div>
-
-        {% endif %} {% if serieMostLike %}
-        <div class="col-lg-6">
-            <h1>Most Liked : </h1>
-            {{ macro.serieView(serieMostLike) }}
-        </div>
-    </div>
-    {% endif %} {% if seriesRandom %}
-    <h1>You may also like : </h1>
-    <div class="row">
-        {% for serie in seriesRandom %}
-        <div class="col-lg-4">
-            {{ macro.serieView(serie) }}
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}--> 
 {% endblock %}

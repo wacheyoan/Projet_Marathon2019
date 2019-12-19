@@ -19,7 +19,10 @@ class HomeController extends AbstractController
     {
 
         /** @var Comments $serieWithMostComments */
-        $serieWithMostComments = $commentsRepository->findWithMostComments()->getSeries();
+        $serieWithMostComments = $commentsRepository->findWithMostComments();
+        if($serieWithMostComments){
+            $serieWithMostComments =$serieWithMostComments->getSeries();
+        }
         $seriesRandom = $seriesRepository->findRandoms();
         $serieMostLike = $seriesRepository->findMostLiked();
 
