@@ -15,3 +15,9 @@
         @content;
     }
 }
+
+@mixin screen-button {
+    @media screen and (max-width:$query-button) {
+        @content;
+    }
+}

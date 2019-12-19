@@ -1,0 +1,38 @@
+.error {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    display: flex;
+    font-family: "Poppins", Arial;
+    text-align: center;
+    font-size: $text-size-large*5;
+  }
+
+  .mediator1 {
+    position: absolute;
+    top: 10%;
+    z-index: -1;
+  }
+
+  .mediator2 {
+    position: absolute;
+    top: 35%;
+    left: 70%;
+    z-index: -1;
+  }
+
+  .button {
+    align-self: end;
+    margin-top:$spacing-medium;
+
+    @include screen-button() {
+      align-self: center;
+    }
+
+    a {
+      color: #FFFFFF;
+    }
+  }
+}

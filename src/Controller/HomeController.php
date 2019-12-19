@@ -36,15 +36,13 @@ class HomeController extends AbstractController
         }
 
         $nbEpisode = 0;
-        foreach ($series as $serie){
-            if($nbEpisode < count($serie->episode)){
+        foreach ($series as $serie) {
+            if ($nbEpisode < count($serie->episode)) {
                 $nbEpisode = count($serie->episode);
                 $serieMostViewed = $serie;
             }
 
         }
-
-
 
         return $this->render('home/index.html.twig',[
             'serieWithMostComments' => $serieWithMostComments,
