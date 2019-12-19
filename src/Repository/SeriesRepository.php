@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Kind;
 use App\Entity\Series;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -69,6 +70,18 @@ class SeriesRepository extends ServiceEntityRepository
 
         return $query->fetchAll();
        */
+    }
+
+
+    public function findByKind(String $kind){
+
+        return $this->createQueryBuilder('s')
+            ->innerJoin('s.Kinds','k')
+            ->andWhere('k.name = (:kind)')
+            ->setParameter('kind',$kind)
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
     public function findMostLiked()

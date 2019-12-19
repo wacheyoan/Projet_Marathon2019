@@ -10,7 +10,7 @@
         {% for key,serie in series %}
             <div class="col-lg-3">
             <p>{{ key }}</p>
-            <a href="{{ path('series_show',{id:serie.id}) }}"><img src="{{ base_url~serie.image }}"></a>
+            <a href="{{ path('series_kind_show',{kind:key}) }}"><img src="{{ base_url~serie.image }}"></a>
             </div>
         {% endfor %}
     </div>
