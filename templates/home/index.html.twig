@@ -40,15 +40,28 @@
         </div>
     </div> -->
 
-    <!-- <h1>Vos dernières <span class="textOrange">recommandations</span></h1>
-    <div class="recommandations">
-        <a href="" class="recommandation_item">
+    <h2>Vos dernières <span class="textOrange">recommandations</span></h2>
+    <div class="cards">
+        {% if seriesRandom %}
+        <div class="cards_list">
+            {% for serie in seriesRandom %}
+                <div class="card_item">
+                    <a href="{{ path('series_show',{'id':serie.id}) }}">
+                        <span class="blackBG"></span>
+                        {{ macro.serieView(serie) }}
+                    </a>
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+     </div>
+
+     <!-- <a href="" class="recommandation_item">
             <h3>Brooklyn Nine-Nine</h3>
             <p class="note"><i class="fa fa-star" aria-hidden="true"></i>8.20</p>
             <span class="blackBG"></span>
             <img src="./img/serie.jpg" alt="">
-        </a>
-     </div> -->
+        </a> -->
 
     <div class="movie_present most_commented">
         <h3 class="movie_present_pretitle" >La série la <b>plus commentée</b></h3>
