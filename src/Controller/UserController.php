@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 /**
  * @Route("/user")
@@ -21,6 +23,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
+     * @IsGranted("ROLE_ADMIN")
+
      * @Route("/", name="user_index", methods={"GET"})
      */
     public function index(UserRepository $userRepository): Response
@@ -31,6 +35,8 @@ class UserController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
+
      * @Route("/new", name="user_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -54,7 +60,8 @@ class UserController extends AbstractController
     }
 
     /**
-     *
+     * @IsGranted("ROLE_USER")
+
      * @Route("/profil", name="user_profil", methods={"GET"})
      *
      */
@@ -104,6 +111,8 @@ class UserController extends AbstractController
 
 
     /**
+     * @IsGranted("ROLE_ADMIN")
+
      * @Route("/{id}", name="user_show", methods={"GET"})
      */
     public function show(User $user): Response
@@ -114,6 +123,8 @@ class UserController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
+
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, User $user): Response

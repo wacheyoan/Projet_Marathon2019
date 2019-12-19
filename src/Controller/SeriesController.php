@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Comments;
 use App\Entity\Episodes;
 use App\Entity\Kind;
 use App\Entity\Series;
+use App\Form\CommentsType;
 use App\Form\SeriesType;
 use App\Repository\CommentsRepository;
 use App\Repository\EpisodesRepository;
@@ -14,6 +16,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 /**
  * @Route("/series")
@@ -31,6 +35,9 @@ class SeriesController extends AbstractController
     }
 
     /**
+     *
+     * @IsGranted("ROLE_ADMIN")
+
      * @Route("/new", name="series_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -54,9 +61,9 @@ class SeriesController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="series_show", methods={"GET"})
+     * @Route("/{id}", name="series_show", methods={"GET","POST"})
      */
-    public function show(Series $series,EpisodesRepository $episodesRepository,
+    public function show(Series $series,Request $request,EpisodesRepository $episodesRepository,
                          CommentsRepository $commentsRepository): Response
     {
         $episodes = $episodesRepository->findBy([
@@ -72,15 +79,51 @@ class SeriesController extends AbstractController
             $tab["Season".$episode->getSeason()][$episode->getNumber()] = $episode;
         }
 
+        $comment = new Comments();
+
+        $form = $this->createForm(CommentsType::class, $comment);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setUser($this->getUser());
+            $comment->setCreatedAt(new \DateTime());
+            $comment->setSeries($series);
+            $comment->setPositive(0);
+            $comment->setValidated(0);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($comment);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('series_show',['id'=>$series->getId()]);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
         
         return $this->render('series/show.html.twig', [
             'series' => $series,
             'seasons' => $tab,
-            'comments' => $comments
+            'comments' => $comments,
+            'form' => $form->createView(),
+
         ]);
     }
 
     /**
+     *
+     * @IsGranted("ROLE_ADMIN")
+
      * @Route("/{id}/edit", name="series_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Series $series): Response
@@ -101,6 +144,8 @@ class SeriesController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
+
      * @Route("/{id}", name="series_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Series $series): Response
