@@ -4,56 +4,110 @@
 {% block title %}Series{% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="row">
-    <h1>{{ series.name }}</h1>
-    </div>
-    <div class="row">
 
-        <img src="{{ base_url~series.image  }}"/>
+    <div class="container_shape">
+        <svg class="shape_3_grise" xmlns="http://www.w3.org/2000/svg" width="900" height="800"
+             viewBox="0 0 161.451 189.135">
+            <defs>
+                <style>.a {
+                        fill: rgba(0, 0, 0, 0.05);
+                    }</style>
+            </defs>
+            <path class="a"
+                  d="M.589-195.7A100.17,100.17,0,0,1,13.181-111.07C4.786-84.29-15.789-63.122-39.42-53.815c-23.632,9.261-50.366,6.661-67.108-5.611-16.789-12.318-23.632-34.307-29.927-57.619s-12.044-47.948-2.281-71.625c9.809-23.677,35.128-46.4,63.185-48.541C-47.5-239.4-16.7-221.108.589-195.7Z"
+                  transform="translate(143.97 237.389)"/>
+        </svg>
     </div>
-    <div class="row">
-        <p>Language : {{ series.language }} </p>
-        <p>Date : {{ series.premiere ? series.premiere | date('Y-m-d') : '' }}</p>
-        <p>Score : {{ series.score ? series.score : 'No score yet'}}</p>
-        <p>Status : {{ series.status }}</p>
-        <p>Summary : {{ series.summary | raw }}</p>
-        <p>Opinion : {{ series.avis ? series.avis : 'No opinion yet' }}</p>
-    </div>
+    <svg class="shape_1_orange" xmlns="http://www.w3.org/2000/svg" width="956.679" height="951.096"
+         viewBox="0 0 956.679 951.096">
+        <defs>
+            <style>.shape_1_orange .a {
+                    fill: #fb9106;
+                }</style>
+        </defs>
+        <g transform="translate(105.366 98.071)">
+            <path class="a"
+                  d="M409.691,3.625C484.25,107.969,555.773,203.966,544.39,291.8c-11.383,88.029-105.672,167.9-208.5,209.447-102.826,41.738-214.38,45.153-317.016,5.312S-177.672,383.817-196.643,287.441-159.459,81.409-84.331-22.935C-9.2-127.469,85.276-226.691,171.407-220.051,257.349-213.221,334.943-100.719,409.691,3.625Z"
+                  transform="translate(465.326 163.115) rotate(71)"/>
+        </g>
+    </svg>
+    <img src="{{ series.image }}" class="serie-img shape_2_photo" width="170"/>
+    <svg>
+        <defs>
+            <clipPath id="svgPath" clipPathUnits="userSpaceOnUse">
+                <path class="a"
+                      d="M.589-195.7A100.17,100.17,0,0,1,13.181-111.07C4.786-84.29-15.789-63.122-39.42-53.815c-23.632,9.261-50.366,6.661-67.108-5.611-16.789-12.318-23.632-34.307-29.927-57.619s-12.044-47.948-2.281-71.625c9.809-23.677,35.128-46.4,63.185-48.541C-47.5-239.4-16.7-221.108.589-195.7Z"
+                      transform="translate(143.97 237.389)"/>
+            </clipPath>
+        </defs>
+    </svg>
+    <div class="container">
+        <div class="container_titre">
+            <h1 class="titre_serie">{{ series.name }}</h1>
+            <p class="note"><i class="fa fa-star" aria-hidden="true"></i>{{ series.score }}</p>
         </div>
-    {% if is_granted('ROLE_USER') %}
+        <div class="container_infos">
+            {{ series.summary|raw }}
+            <h2>Informations sur la série</h2>
+            <ul>
+                <li>
+                    Statut : <b>{{ series.status }}</b>
+                </li>
+                <li>
+                    Langue : <b>{{ series.language }}</b>
+                </li>
+                <li>
+                    Sortie initiale : <b>{{ series.premiere|date('Y') }}</b>
+                </li>
+            </ul>
+        </div>
 
-    {% endif %}
-    {% if is_granted('ROLE_USER') %}
-        {{ include('comments/_form.html.twig') }}
-    {% endif %}
+        {% if is_granted('ROLE_USER') %}
+            {{ include('comments/_form.html.twig') }}
+        {% endif %}
 
-    {% if comments %}
-        <h1>Commentaires : </h1>
-
-
-
-
-        {% for comment in comments  %}
-            {% if comment.validated or is_granted('ROLE_ADMIN')%}
-            <span>{{ comment.user.username }} : {{ comment.content }}</span>{{ macros.bouton(comment) }}<br>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-
-
-    <h1>Episodes :</h1>
-    {% for keys,season in seasons  %}
-        <h3>{{ keys }}</h3>
-        {% for episode in season %}
-            <a href="{{ path('episodes_show',{'id':episode.id}) }}"><img src="{{ base_url~episode.image  }}"/></a>
+        {% if comments %}
+            <div class="container_com">
+                <h1>Commentaires</h1>
+                <div class="list_com">
+                    {% for comment in comments %}
+                        {% if comment.validated or is_granted('ROLE_ADMIN') %}
+                            <div class="com">
+                                <img src="{{ asset("images/users/"~comment.User.avatar) }}" alt="">
+                                <div class="textes_com">
+                                    <h2>{{ comment.user.username }}</h2>
+                                    {{ comment.content|raw }}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        <div class="container_episodes">
+            <h1>Tous les <span class="textOrange">épisodes</span></h1>
+            {% for keys,season in seasons %}
+                <h2>Saison {{ loop.index }}</h2>
+                <div class="list_episodes">
+                    {% for episode in season %}
+                        <div class="episode">
+                            <a href="{{ path('episodes_show',{'id':episode.id}) }}"><img src="{{ episode.image }}"
+                                                                                         alt=""></a>
+                        </div>
+                    {% endfor %}
+                </div>
             {% endfor %}
-    {% endfor %}
+        </div>
+        <div class="container_buttons">
+            <button class="button" style="margin-right: 1.25rem"><a class="puissance" href="{{ path('series_index') }}">Retour à la liste<i
+                            class="fas fa-chevron-right"></i></a></button>
+            <button class="button"><a class="puissance" href="{{ path('series_edit', {'id': series.id}) }}">Modifier<i
+                            class="fas fa-edit"></i></a></button>
+            <div class="end">
+                {{ include('series/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
 
-    <a href="{{ path('series_index') }}">back to list</a>
 
-    <a href="{{ path('series_edit', {'id': series.id}) }}">edit</a>
-</div>
-
-    {{ include('series/_delete_form.html.twig') }}
 {% endblock %}
