@@ -15,23 +15,40 @@
 
         h3 {
             font-size: $title-size-large*2;;
+            margin-bottom: $spacing-large;
         }
 
         label {
             margin-left: $spacing-medium;
+            margin-bottom: $spacing-small;
             font-weight: bold;
         }
 
         input, button {
+            color:black;
             background-color:$c-white;
             border-radius: 3rem;
             padding: $spacing-medium;
-            margin-bottom: $spacing-large*2;
+            margin-bottom: $spacing-large*1.5;
         }
 
         button[type=submit] {
             width: fit-content;
             background-color:$c-primary;
+            width: 40%;
+        }
+
+        input[type="checkbox"]{
+            background-color: $c-white;
+            border: 1px black solid;
+        }
+
+        .form_error {
+            width: 100%;
+            padding: $spacing-small;
+            border: 1px red solid;
+            border-radius: 0.4rem;
+            margin-bottom: $spacing-large;
         }
     }
 }
