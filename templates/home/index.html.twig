@@ -40,6 +40,16 @@
         </div>
     </div> -->
 
+    <!-- <h1>Vos dernières <span class="textOrange">recommandations</span></h1>
+    <div class="recommandations">
+        <a href="" class="recommandation_item">
+            <h3>Brooklyn Nine-Nine</h3>
+            <p class="note"><i class="fa fa-star" aria-hidden="true"></i>8.20</p>
+            <span class="blackBG"></span>
+            <img src="./img/serie.jpg" alt="">
+        </a>
+     </div> -->
+
     <div class="movie_present most_commented">
         <h3 class="movie_present_pretitle" >La série la <b>plus commentée</b></h3>
         {{ macro.serieView(serieWithMostComments) }}
@@ -52,10 +62,19 @@
         <img class="mediator" src="{{asset("images/home/forme_hp_2.svg") }}" alt="">
     </div>
 
+    <div class="movie_present most_viewed">
+        <h3 class="movie_present_pretitle" >La série la <b>plus vues</b></h3>
+        {% if serieMostViewed %}
+            {{ macro.serieView(serieMostViewed) }}
+        {% endif %}
+        <img class="mediator" src="{{asset("images/home/forme_hp_1.svg") }}" alt="">
+    </div>
+    
+
     <!--TODO
 
     seriesRandom
-    seriesLes plus vues
+    DONE seriesLes plus vues
 
     -->
 {#    {% if serieMostViewed %}#}
@@ -85,4 +104,5 @@
         </div>
         {% endfor %}
     </div>
-    {% endif %}--> {% endblock %}
+    {% endif %}--> 
+{% endblock %}
