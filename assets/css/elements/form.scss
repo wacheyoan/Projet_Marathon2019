@@ -5,6 +5,15 @@
     height: 80vh;
     width: 100vw;
 
+    h3 {
+        font-size: $title-size-large*2;;
+        margin-bottom: $spacing-large;
+    }
+
+    @mixin screen-sm() {
+        height: auto;
+        width: 100vw;
+    }
     form {
         display: flex;
         flex-direction: column;
@@ -12,6 +21,11 @@
 
         margin: auto;
         padding-right:$spacing-large*6;
+
+        @mixin screen-sm() {
+            width: 100%;
+            padding-right:2rem;
+        }
 
         h3 {
             font-size: $title-size-large*2;;
@@ -24,7 +38,7 @@
             font-weight: bold;
         }
 
-        input, button {
+        input, button, textarea {
             color:black;
             background-color:$c-white;
             border-radius: 3rem;
@@ -49,6 +63,15 @@
             border: 1px red solid;
             border-radius: 0.4rem;
             margin-bottom: $spacing-large;
+        }
+
+        div#user {
+            display: flex;
+            flex-direction: column;
+            div {
+                display: flex;
+                flex-direction: column;
+            }
         }
     }
 }

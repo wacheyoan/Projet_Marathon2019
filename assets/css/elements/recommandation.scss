@@ -1,0 +1,72 @@
+.recommandations{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.recommandation_item{
+    max-height:295px;
+    max-width:210px;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    margin:0px 20px 20px 0px;
+}
+
+.recommandation_item .blackBG{
+    height:100%;
+    width:100%;
+    z-index: 3;
+    position:absolute;
+    background: transparent linear-gradient(180deg, #00000000 0%, #000000B5 100%) 0% 0% no-repeat padding-box;
+    opacity: 0;
+    transition: opacity .2s ease-in-out;
+}
+
+.recommandation_item h3{
+    z-index: 4;
+    position:absolute;
+    top:70%;
+    left:50%; 
+    text-align:center;
+    transform: translateX(-50%) translateY(-50%);
+    color:white;
+    opacity: 0;
+    transition: opacity .2s ease-in-out;
+    font-size:16px;
+}
+
+.recommandation_item .note{
+    font-family: 'Poppins','Arial';
+    margin-top:25px;
+    z-index: 4;
+    position:absolute;
+    top:80%;
+    left:50%; 
+    text-align:center;
+    transform: translateX(-50%) translateY(-50%);
+    color:white;
+    opacity: 0;
+    transition: opacity .2s ease-in-out;
+}
+
+.recommandation_item .note i{
+    color:white;
+    font-size: 10px;
+    top:-10%;
+}
+
+.recommandation_item:hover .blackBG, .recommandation_item:hover h3, .recommandation_item:hover .note{
+    opacity: 1;
+}
+
+@media screen and (max-width: 1024px) {
+    .recommandations{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .recommandations{
+        grid-template-columns: 1fr 1fr;
+    }
+}
