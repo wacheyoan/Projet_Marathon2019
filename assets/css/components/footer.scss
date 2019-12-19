@@ -10,6 +10,9 @@
       background-color: $c-darkgrey;
       padding: $spacing-large;
       width: 100%;
+      @include screen-sm() {
+        flex-direction: column;
+      }
       .footer_link_items { 
         margin:auto;
         a {
