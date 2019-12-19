@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %} 
 {% import 'macros.html.twig' as macro %} 
-{% block title %}Home Page !
+{% block title %}Kino | Toute l'actualité séries TV rassemblée sur un seul site !
 {% endblock %} 
 {% block body %}
 
@@ -8,12 +8,9 @@
 
     <div class="presentation">
         <div class="presentation_content">
-            <h1>Lorem ipsum dolor, sit amet </h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, aspernatur rem. Vel vero necessitatibus
-                at, minus
-                hic maiores quas consequuntur ad possimus? Cupiditate hic doloremque facere ab quo voluptates
-                voluptas!</p>
-            <a class="button" href="">Je suis un bouton <i class="fas fa-chevron-right"></i></a>
+            <h1>Toute l'actualité séries TV<br> rassemblée sur un seul site !</h1>
+            <p></p>
+            <a class="button" href="">Découvrir <i class="fas fa-chevron-right"></i></a>
         </div>
         <div class="presentation_image">
             <img src="{{asset("images/breakingBadHome.png") }}" alt=""/>
@@ -76,7 +73,7 @@
     </div>
 
     <div class="movie_present most_viewed">
-        <h3 class="movie_present_pretitle" >La série la <b>plus vues</b></h3>
+        <h3 class="movie_present_pretitle" >La série la <b>plus vue</b></h3>
         {% if serieMostViewed %}
             {{ macro.serieView(serieMostViewed) }}
         {% endif %}

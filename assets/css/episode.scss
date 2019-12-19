@@ -84,7 +84,7 @@
 .container_infos{
   max-width: 796px;
   margin: auto;
-  padding: 0% 33% 0% 15%;
+  padding: 0% 33% 0% 0%;
   @include screen-md() {
     padding: 0;  
     margin:0;
@@ -145,6 +145,10 @@
   margin-top:30px;
 }
 
+.container_episodes {
+  margin-top: $spacing-large*2;
+}
+
 .container_episodes h1{
   font-family: 36px;
   font-family: "Poppins";
@@ -186,6 +190,10 @@
 .orange {
   color: $c-primary;
   margin-right:$spacing-medium;
+}
+
+.puissance {
+  color: #FFFFFF !important;
 }
 
 @media screen and (max-width: 1024px) {
