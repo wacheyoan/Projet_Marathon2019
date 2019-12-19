@@ -58,4 +58,17 @@ class EpisodesRepository extends ServiceEntityRepository
         return $pagination;
     }
 
+    public function findByLike($like){
+        return $this->createQueryBuilder('e')
+            ->where('e.name LIKE :like')
+            ->innerJoin('e.Series','s')
+            ->orWhere('s.name LIKE :like')
+            ->innerJoin('s.Kinds','k')
+            ->orWhere('k.name LIKE :like')
+            ->setParameter('like','%'.$like.'%')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 }
