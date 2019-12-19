@@ -4,7 +4,7 @@
         <img height="400px" src="{{ asset(base_url~serie.image) }}" alt="">
         <div class="movie_present_desc">
             <h4 class="movie_present_desc_title">{{ serie.name }}</h4>
-            <p class="movie_present_desc_text">{{ serie.summary | raw}}</p>
+           {{ serie.summary | raw}}
             <a class="button" href="{{ path('series_show',{'id':serie.id}) }}">
                 Consulter<i class="fas fa-chevron-right"></i></a>
         </div>
