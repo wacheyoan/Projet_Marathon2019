@@ -1,0 +1,37 @@
+.form_container {
+    display: flex;
+    flex-direction: column;
+
+    height: 80vh;
+    width: 100vw;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+
+        margin: auto;
+        padding-right:$spacing-large*6;
+
+        h3 {
+            font-size: $title-size-large*2;;
+        }
+
+        label {
+            margin-left: $spacing-medium;
+            font-weight: bold;
+        }
+
+        input, button {
+            background-color:$c-white;
+            border-radius: 3rem;
+            padding: $spacing-medium;
+            margin-bottom: $spacing-large*2;
+        }
+
+        button[type=submit] {
+            width: fit-content;
+            background-color:$c-primary;
+        }
+    }
+}
