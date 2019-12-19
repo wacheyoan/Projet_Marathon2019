@@ -6,6 +6,7 @@ use App\Entity\Kind;
 use App\Form\KindType;
 use App\Repository\KindRepository;
 use App\Repository\SeriesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,17 +28,22 @@ class KindController extends AbstractController
         $kinds = [];
         foreach ($series as $serie){
             foreach ($serie->getKinds() as $kindSerie){
+
                 $kinds[$kindSerie->getName()][] = $serie;
             }
         }
 
-        $series = [];
+        $series = new ArrayCollection();
         foreach ($kinds as $kind) {
-            $series[key($kinds)]= $kind[rand(0,sizeof($kind)-1)];
+                do {
+                    $serie = $kind[rand(0, sizeof($kind) - 1)];
+                    unset($kind[array_search($serie, $kind)]);
+                    $kind = array_values($kind);
+                } while ($series->contains($serie) && sizeof($kind) > 0);
+
+            $series[key($kinds)]= $serie;
             next($kinds);
         }
-
-        
         return $this->render('kind/index.html.twig', [
             'series' => $series
         ]);
