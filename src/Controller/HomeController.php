@@ -27,6 +27,7 @@ class HomeController extends AbstractController
         $serieMostLike = $seriesRepository->findMostLiked();
 
         $users = $userRepository->findAll();
+        $serieMostViewed = null;
 
         $series= [];
         foreach ($users as $user){

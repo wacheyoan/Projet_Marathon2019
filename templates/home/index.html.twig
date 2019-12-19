@@ -60,14 +60,14 @@
             <img src="./img/serie.jpg" alt="">
         </a> -->
 
-    {% if serieWithMostComments is defined  %}
+    {% if serieWithMostComments is defined  and serieWithMostComments != null%}
     <div class="movie_present most_commented">
         <h3 class="movie_present_pretitle" >La série la <b>plus commentée</b></h3>
         {{ macro.serieView(serieWithMostComments) }}
         <img class="mediator" src="{{asset("images/home/forme_hp_1.svg") }}" alt="">
     </div>
     {% endif %}
-    {% if serieMostLike  is defined %}
+    {% if serieMostLike  is defined and serieMostLike != null  %}
     <div class="movie_present trending">
         <h3 class="movie_present_pretitle" >La série <b>favorite</b></h3>
         {{ macro.serieView(serieMostLike) }}
@@ -75,10 +75,10 @@
     </div>
     {% endif %}
 
-    {% if serieMostViewed  is defined %}
+    {% if serieMostViewed  is defined and serieMostViewed != null%}
     <div class="movie_present most_viewed">
         <h3 class="movie_present_pretitle" >La série la <b>plus vue</b></h3>
-        {% if serieMostViewed %}
+        {% if serieMostViewed != null %}
             {{ macro.serieView(serieMostViewed) }}
         {% endif %}
         <img class="mediator" src="{{asset("images/home/forme_hp_1.svg") }}" alt="">
