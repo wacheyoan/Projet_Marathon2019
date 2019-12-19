@@ -26,11 +26,11 @@ class EpisodesController extends AbstractController
             'premiere' => 'DESC'
         ]);*/
 
-        $episodes = $episodesRepository->findAllOrderedByDatePaginated($page,20);
+        $episodes = $episodesRepository->findAllOrderedByDatePaginated($page,10);
 
         $pagination = [
             'page' => $page,
-            'nbPages' => ceil(count($episodes) / 20),
+            'nbPages' => ceil(count($episodes) / 10),
             'nomRoute' => 'episodes_index',
             'paramsRoute' => []
         ];

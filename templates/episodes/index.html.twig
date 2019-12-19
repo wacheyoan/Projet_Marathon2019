@@ -4,15 +4,14 @@
 
 {% block body %}
     <div class="container">
-    <h1>Latest Episodes</h1>
+    <h1>All Episodes</h1>
 
         {% for episode in episodes %}
-
             <div class="row">
                 <a href="{{ path('episodes_show',{'id':episode.id}) }}">
                     <img src="{{ episode.image ? base_url~episode.image : base_url~'/img/blanck.jpg'}}">
                 </a>
-                <span>{{ episode.name }} S{{ episode.season }} Episode {{ episode.number }}</span>
+                <span>{{ episode.series.name }} S{{ episode.season }} Episode {{ episode.number }}</span>
                 <span>{{ episode.premiere ? episode.premiere | date('Y-m-d') : ''}}</span>
             </div>
            {% else %}

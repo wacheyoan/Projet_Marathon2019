@@ -14,7 +14,7 @@
             </a>
             <a class="navbar-item" href="{{ path('home') }}">Index</a>
         {% else %}
-            <a class="navbar-item" href="{{ path('episodes_index') }}">Episodes</a>
+            <a class="navbar-item" href="{{ path('episodes_index',{'page':1}) }}">Episodes</a>
             <a class="navbar-item" href="{{ path('series_index') }}">Séries</a>
             <a class="navbar-item" href="{{ path('kind_index') }}">Catégories</a>
             <img src="{{ asset('images/logos/Logo_carre.svg') }}" alt="logo de Kino" height="100px">

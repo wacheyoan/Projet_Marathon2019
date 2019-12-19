@@ -41,6 +41,7 @@ class EpisodesRepository extends ServiceEntityRepository
         }
 
         $firstResult = ($page - 1) * $maxResult;
+        $date = new \DateTime('now');
 
         $qb = $this->createQueryBuilder('e')
             ->orderBy('e.premiere','DESC')
