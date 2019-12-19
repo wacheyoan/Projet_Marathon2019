@@ -1,0 +1,51 @@
+.container {
+  .profile_container {
+    display: flex;
+
+    margin-top: $spacing-large*4;
+
+    .profile_informations {
+      display: flex;
+      flex-direction: column;
+
+      margin-left: $spacing-medium;
+
+      .profile_nom {
+        display: flex;
+        flex-direction: column;
+
+        h3 {
+          font-size: $text-size-large*2;
+        }
+      }
+
+      .profile_stats {
+        display: flex;
+        flex-direction: row;
+
+        margin-top: $spacing-large;
+
+        .watchtime, .episodes_vus, .commentaires {
+          display: flex;
+          flex-direction: column;
+          margin: $spacing-medium*2;
+
+          span {
+            font-size: $text-size-large;
+            text-align: center;
+          }
+
+          .important {
+            color: $c-primary;
+            font-weight: 700;
+            font-size: $text-size-large*2;
+          }
+        }
+      }
+
+    }
+
+    .profile_picture {
+    }
+  }
+}
