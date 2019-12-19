@@ -62,7 +62,7 @@ class Episodes
     private $created_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Series")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Series",fetch="EAGER")
      * @ORM\JoinColumn(nullable=false)
      */
     private $Series;
