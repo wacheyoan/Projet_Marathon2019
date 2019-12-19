@@ -19,10 +19,27 @@
 @import "elements/form";
 @import "elements/pagination";
 
-
-.container{
+.container_full {
     font-family: "Public Sans";
+    display: flex;
+    flex-direction: column;
+    width:100vw;
+    min-height: 100vh;
+}
+
+.container {
     max-width:1296px;
     margin:auto;
-    padding: 0% 5%;
-  }
+    @include screen-md() {
+        max-width: 90vw;
+    }
+
+    h2 {
+        font-size: $title-size-large*1.5;
+    }
+    div {
+        h2 {
+            font-size: $title-size-large*1.5;
+        }
+    }
+}

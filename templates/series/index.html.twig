@@ -3,35 +3,33 @@
 {% block title %}Series index{% endblock %}
 
 {% block body %}
-    <h1>Series index</h1>
-
-    {% if form is defined %}
-        {{ form_start(form) }}
-            {{ form_widget(form) }}
-        {{ form_end(form) }}
-    {% endif %}
-
 
     {% if series is defined%}
-    <div class="cards">
-        <div class="cards_list">
-            {% for serie in series %}
-                <div class="card_item">
-                    <a href="{{ path('series_show',{'id':serie.id}) }}">
-                        <span class="blackBG"></span>
-                    </a>
-                    <div class="movie_presentation">
-                        <img src="{{ base_url~serie.image }}" alt="{{ serie.name }}" height="400px">
-                        <div class="movie_present_desc">
-                            <h4 class="movie_present_desc_title">{{ serie.name }}</h4>
-                            <p class="movie_summary">{{ serie.summary | raw }}</p>
+    <div class="container">
+        <h2>Series index</h2>
+        <div class="cards">
+            <div class="cards_list">
+                {% for serie in series %}
+                    <div class="card_item">
+                        <a href="{{ path('series_show',{'id':serie.id}) }}">
+                            <span class="blackBG"></span>
+                        </a>
+                        <div class="movie_presentation">
+                            <img src="{{ base_url~serie.image }}" alt="{{ serie.name }}" height="400px">
+                            <div class="movie_present_desc">
+                                <h4 class="movie_present_desc_title">{{ serie.name }}</h4>
+                                <p class="movie_summary">{{ serie.summary | raw }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
     {% endif %}
 
-            {% set MySeries = []%}
+    {% set MySeries = []%}
+
     {% if search is defined %}
         {% for episodes in search %}
             {% if episodes.Series not in MySeries %}

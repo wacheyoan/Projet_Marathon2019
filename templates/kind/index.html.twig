@@ -4,28 +4,12 @@
 
 {% block body %}
 
-    <!-- <div class="container">
-        <h1>Kind index</h1>
-    <div class="row">
-        {% for key,serie in series %}
-            <div class="col-lg-3">
-            <p>{{ key }}</p>
-            <a href="{{ path('series_kind_show',{kind:key}) }}"><img src="{{ base_url~serie.image }}"></a>
-            </div>
-        {% endfor %}
-    </div>
-    </div>
-
-    <a href="{{ path('kind_new') }}">Create new</a> -->
-
-
-
     <div class="container">
-        <h1>Parcourez par <span class="textOrange">catégorie</span></h1>
+        <h2>Parcourez par <span class="textOrange">catégorie</span></h2>
         <div class="container_cat">
             {% for key,serie in series %}
             <a href="{{ path('series_kind_show',{kind:key}) }}" class="cat">
-                <h2>{{ key }}</h2>
+                <h3>{{ key }}</h3>
                 <span class="blackBG"></span>
                 <img src="{{ base_url~serie.image }}" alt="">
             </a>
