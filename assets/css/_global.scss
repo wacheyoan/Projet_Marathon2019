@@ -2,68 +2,19 @@
   padding: 0; margin: 0; box-sizing: border-box;
 }
 
-@font-face {
-  font-family: "Public Sans";
-  src: url("../fonts/PublicSans-Thin.ttf") format("trueType");
-  font-weight: 100;
-}
-@font-face {
-  font-family: "Public Sans";
-  src: url("../fonts/PublicSans-ExtraLight.ttf") format("trueType");
-  font-weight: 200;
-}
-@font-face {
-  font-family: "Public Sans";
-  src: url("../fonts/PublicSans-Light.ttf") format("trueType");
-  font-weight: 300;
-}
-@font-face {
-  font-family: "Public Sans";
-  src: url("../fonts/PublicSans-Regular.ttf") format("trueType");
-  font-weight: 400;
-}
-@font-face {
-  font-family: "Public Sans";
-  src: url("../fonts/PublicSans-Medium.ttf") format("trueType");
-  font-weight: 500;
-}
-@font-face {
-  font-family: "Public Sans";
-  src: url("../fonts/PublicSans-SemiBold.ttf") format("trueType");
-  font-weight: 600;
-}
-@font-face {
-  font-family: "Public Sans";
-  src: url("../fonts/PublicSans-Bold.ttf") format("trueType");
-  font-weight: 700;
-}
-@font-face {
-  font-family: "Public Sans";
-  src: url("../fonts/PublicSans-ExtraBold.ttf") format("trueType");
-  font-weight: 800;
-}
-@font-face {
-  font-family: "Public Sans";
-  src: url("../fonts/PublicSans-Black.ttf") format("trueType");
-  font-weight: 900;
-}
-
-a {
-  text-decoration: none;
-  color:black;
-}
-
-
-@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap');
 
 
 
 
 
 .movie_present {
+  position: relative;
   display: flex;
   flex-direction: column;
-  .movie_present_posttitle {
+  font-family: "Public Sans";
+
+  margin: $spacing-large*4 $spacing-large*10;
+  .movie_present_pretitle {
       color: $c-white;
       font-size: $title-size-large*1.75;
       b {
@@ -73,18 +24,32 @@ a {
   .movie_presentation {
       display: flex;
       img {
+        margin-right: $spacing-large;
+        width: 25%;
+      }
+      .movie_present_desc {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        width: 50%;
+        h4 {
+            font-size: $title-size-large*1.5;
+        }
+        p {
+            font-size: $text-size-large;
+            margin: $spacing-large*1.5 0px;
+            line-height: $text-size-large*1.50;
+        }
+      }
+  }
 
-      }
-      .movie_description {
-          display: flex;
-          flex-direction: column;
-          h4 {
-              font-size: $title-size-large*1.5;
-          }
-          p {
-              font-size: $text-size-large;
-          }
-      }
+  .mediator {
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left:-16%;
+    transform: translateY(-50%);
   }
 }
 

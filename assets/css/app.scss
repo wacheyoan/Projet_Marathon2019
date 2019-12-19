@@ -1,9 +1,11 @@
 @import "variable";
-@import "global";
 @import "mixin";
+@import "global";
+@import "font";
 
 @import "home";
 @import "_global.scss";
+@import "global";
 
 @import "components/footer";
 @import "components/header";
