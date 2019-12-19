@@ -20,26 +20,6 @@
         </div>
     </div>
 
-    <!-- <div class="recommandations">
-        <div class="recommandation_list">
-            <div class="recommandation_item">
-                <img src="https://www.mauvais-genres.com/26247/avengers-endgame-original-movie-poster-15x21-in-2019-anthony-russo-robert-downey-jr.jpg"/>
-            </div>
-            <div class="recommandation_item">
-                <img src="https://cdn.shopify.com/s/files/1/1057/4964/products/the-matrix-vintage-movie-poster-original-french-1-panel-47x63.jpg?v=1551323078"/>
-            </div>
-            <div class="recommandation_item">
-                <img src=""/>
-            </div>
-            <div class="recommandation_item">
-                <img src=""/>
-            </div>
-            <div class="recommandation_item">
-                <img src=""/>
-            </div>
-        </div>
-    </div> -->
-
     <h2>Vos dernières <span class="textOrange">recommandations</span></h2>
     <div class="cards">
         {% if seriesRandom %}
@@ -55,13 +35,6 @@
             </div>
         {% endif %}
      </div>
-
-     <!-- <a href="" class="recommandation_item">
-            <h3>Brooklyn Nine-Nine</h3>
-            <p class="note"><i class="fa fa-star" aria-hidden="true"></i>8.20</p>
-            <span class="blackBG"></span>
-            <img src="./img/serie.jpg" alt="">
-        </a> -->
 
     <div class="movie_present most_commented">
         <h3 class="movie_present_pretitle" >La série la <b>plus commentée</b></h3>
@@ -82,40 +55,5 @@
         {% endif %}
         <img class="mediator" src="{{asset("images/home/forme_hp_1.svg") }}" alt="">
     </div>
-    
 
-    <!--TODO
-
-    seriesRandom
-    DONE seriesLes plus vues
-
-    -->
-{#    {% if serieMostViewed %}#}
-{#        {{ macro.serieView(serieMostViewed) }}#}
-{#    {% endif %}#}
-
-    <!-- <div class="container">
-    {% if serieWithMostComments %}
-    <div class="row">
-        <div class="col-lg-6">
-            <h1>Most commented : </h1>
-            {{ macro.serieView(serieWithMostComments) }}
-        </div>
-
-        {% endif %} {% if serieMostLike %}
-        <div class="col-lg-6">
-            <h1>Most Liked : </h1>
-            {{ macro.serieView(serieMostLike) }}
-        </div>
-    </div>
-    {% endif %} {% if seriesRandom %}
-    <h1>You may also like : </h1>
-    <div class="row">
-        {% for serie in seriesRandom %}
-        <div class="col-lg-4">
-            {{ macro.serieView(serie) }}
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}--> 
 {% endblock %}
