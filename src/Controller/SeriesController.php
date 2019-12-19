@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Episodes;
+use App\Entity\Kind;
 use App\Entity\Series;
 use App\Form\SeriesType;
 use App\Repository\CommentsRepository;
@@ -111,5 +112,20 @@ class SeriesController extends AbstractController
         }
 
         return $this->redirectToRoute('series_index');
+    }
+
+    /**
+     * @Route("/kind/{kind}", name="series_kind_show", methods={"GET"})
+     */
+    public function showByKind(Request $request,String $kind) :Response{
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $seriesRepository = $entityManager->getRepository(Series::class);
+        $series = $seriesRepository->findByKind($kind);
+
+        return $this->render('series/index.html.twig', [
+            'series' => $series,
+        ]);
     }
 }
