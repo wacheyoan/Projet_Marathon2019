@@ -41,39 +41,16 @@
     </div> -->
 
     <div class="movie_present most_commented">
-        <h3 class="movie_present_pretitle" >La série la <b>plus commentés</b></h3>
-        <div class="movie_presentation">
-            <img height="400px" src="https://img.auctiva.com/imgdata/1/9/8/3/0/8/8/webimg/890241618_o.jpg" alt="">
-            <div class="movie_present_desc">
-                <h4 class="movie_present_desc_title">13 Reason why</h4>
-                <p class="movie_present_desc_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore omnis nihil odit adipisci, porro
-                    possimus ea
-                    velit alias molestiae eveniet eum iusto animi impedit sapiente aspernatur quaerat excepturi
-                    consectetur dolorum!</p>
-                <a class="button" href="">Je suis un boutton<i class="fas fa-chevron-right"></i></a>
-            </div>
-        </div>
-
-        <img class="mediator" src="{{asset("images/home/forme_hp_1.svg") }}" alt="">        
+        <h3 class="movie_present_pretitle" >La série la <b>plus commentée</b></h3>
+        {{ macro.serieView(serieWithMostComments) }}
+        <img class="mediator" src="{{asset("images/home/forme_hp_1.svg") }}" alt="">
     </div>
 
     <div class="movie_present trending">
-        <h3 class="movie_present_pretitle" ><b>La série favorite du</b>moment</h3>
-        <div class="movie_presentation">
-            <img height="400px" src="https://img.auctiva.com/imgdata/1/9/8/3/0/8/8/webimg/890241618_o.jpg" alt="">
-            <div class="movie_present_desc">
-                <h4 class="movie_present_desc_title">13 Reason why</h4>
-                <p class="movie_present_desc_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore omnis nihil odit adipisci, porro
-                    possimus ea
-                    velit alias molestiae eveniet eum iusto animi impedit sapiente aspernatur quaerat excepturi
-                    consectetur dolorum!</p>
-                <a class="button" href="">Je suis un boutton<i class="fas fa-chevron-right"></i></a>
-            </div>
-        </div>
-
+        <h3 class="movie_present_pretitle" >La série <b>favorite</b></h3>
+        {{ macro.serieView(serieMostLike) }}
         <img class="mediator" src="{{asset("images/home/forme_hp_2.svg") }}" alt="">
     </div>
-
 
 
 

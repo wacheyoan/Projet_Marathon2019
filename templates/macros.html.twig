@@ -1,11 +1,15 @@
 {% macro serieView(serie) %}
 
-    <p>Name : {{ serie.name }}</p>
-    {% for kinds in serie.kinds %}
-      {{ kinds.name }}
-    {% endfor %}
-    <p>Score : {{ serie.score }}</p>
-    <p><a href="{{ path('series_show',{id:serie.id}) }}"><img src="{{ base_url~serie.image  }}" /></a></p>
+    <div class="movie_presentation">
+        <img height="400px" src="{{ asset(base_url~serie.image) }}" alt="">
+        <div class="movie_present_desc">
+            <h4 class="movie_present_desc_title">{{ serie.name }}</h4>
+            <p class="movie_present_desc_text">{{ serie.summary | raw}}</p>
+            <a class="button" href="{{ path('series_show',{'id':serie.id}) }}">
+                Consulter<i class="fas fa-chevron-right"></i></a>
+        </div>
+    </div>
+
 
 {% endmacro %}
 
