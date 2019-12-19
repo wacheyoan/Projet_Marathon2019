@@ -9,3 +9,9 @@
         @content;
     }
 }
+
+@mixin screen-wrap {
+    @media screen and (max-width:$query-wrap) {
+        @content;
+    }
+}
