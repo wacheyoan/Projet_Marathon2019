@@ -3,6 +3,18 @@
 {% block title %}Series index{% endblock %}
 
 {% block body %}
+<<<<<<< HEAD
+=======
+    <h1>Series index</h1>
+
+    {% if form is defined %}
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+        {{ form_end(form) }}
+    {% endif %}
+
+
+>>>>>>> d759d3e0f916fddd94a8bdb01b234defeb4dd916
     {% if series is defined%}
     <div class="container">
         <h2>Series index</h2>

@@ -31,22 +31,41 @@
                     </div>
                 {% endfor %}
                 </div>
+<<<<<<< HEAD
             {% endif %}
          </div>
     </div>
     
+=======
+            {% endfor %}
+            </div>
+        {% endif %}
+     </div>
+
+     <!-- <a href="" class="recommandation_item">
+            <h3>Brooklyn Nine-Nine</h3>
+            <p class="note"><i class="fa fa-star" aria-hidden="true"></i>8.20</p>
+            <span class="blackBG"></span>
+            <img src="./img/serie.jpg" alt="">
+        </a> -->
+
+    {% if serieWithMostComments is defined  %}
+>>>>>>> d759d3e0f916fddd94a8bdb01b234defeb4dd916
     <div class="movie_present most_commented">
         <h3 class="movie_present_pretitle" >La série la <b>plus commentée</b></h3>
         {{ macro.serieView(serieWithMostComments) }}
         <img class="mediator" src="{{asset("images/home/forme_hp_1.svg") }}" alt="">
     </div>
-
+    {% endif %}
+    {% if serieMostLike  is defined %}
     <div class="movie_present trending">
         <h3 class="movie_present_pretitle" >La série <b>favorite</b></h3>
         {{ macro.serieView(serieMostLike) }}
         <img class="mediator" src="{{asset("images/home/forme_hp_2.svg") }}" alt="">
     </div>
+    {% endif %}
 
+    {% if serieMostViewed  is defined %}
     <div class="movie_present most_viewed">
         <h3 class="movie_present_pretitle" >La série la <b>plus vue</b></h3>
         {% if serieMostViewed %}
@@ -54,5 +73,10 @@
         {% endif %}
         <img class="mediator" src="{{asset("images/home/forme_hp_1.svg") }}" alt="">
     </div>
+<<<<<<< HEAD
+=======
+    {% endif %}
+
+>>>>>>> d759d3e0f916fddd94a8bdb01b234defeb4dd916
 
 {% endblock %}

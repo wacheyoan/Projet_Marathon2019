@@ -8,6 +8,7 @@ use App\Entity\Kind;
 use App\Entity\Series;
 use App\Form\CommentsType;
 use App\Form\SeriesType;
+use App\Form\TheSearchType;
 use App\Repository\CommentsRepository;
 use App\Repository\EpisodesRepository;
 use App\Repository\SeriesRepository;
@@ -25,12 +26,29 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class SeriesController extends AbstractController
 {
     /**
-     * @Route("/", name="series_index", methods={"GET"})
+     * @Route("/", name="series_index", methods={"GET","POST"})
      */
-    public function index(SeriesRepository $seriesRepository): Response
+    public function index(SeriesRepository $seriesRepository,Request $request,
+                          EpisodesRepository $episodesRepository): Response
     {
+        $form = $this->createForm(TheSearchType::class);
+        $form->handleRequest($request);
+        $search ='';
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $data = $form->getData();
+            $like = $data['Recherche'];
+
+            $search = $episodesRepository->findByLike($like);
+
+            return $this->render('series/index.html.twig',[
+                'search' => $search,
+            ]);
+        }
         return $this->render('series/index.html.twig', [
             'series' => $seriesRepository->findAll(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -99,18 +117,6 @@ class SeriesController extends AbstractController
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-        
         return $this->render('series/show.html.twig', [
             'series' => $series,
             'seasons' => $tab,

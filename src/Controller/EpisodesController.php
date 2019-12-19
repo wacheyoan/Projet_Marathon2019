@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Episodes;
+use App\Entity\User;
 use App\Form\EpisodesType;
 use App\Repository\EpisodesRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
@@ -107,6 +108,22 @@ class EpisodesController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($episode);
             $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('episodes_index');
+    }
+
+    /**
+     * @Route("/{id}/vu", name="episodes_vu", methods={"GET"})
+     */
+    public function vu(Episodes $episode): Response
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if($user){
+            if($user->getEpisodes());
+
         }
 
         return $this->redirectToRoute('episodes_index');
