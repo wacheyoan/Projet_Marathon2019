@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormEvent;
@@ -35,7 +36,8 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username')
+            ->add('username', TextType::class, ['label' => 'Pseudonyme'])
+            ->add('roles')
             //->add('password')
             ->add('email')
             ->add('avatar', FileType::class, [
@@ -60,6 +62,7 @@ class UserType extends AbstractType
             $builder->remove('roles')->remove('password')->remove('avatar')->remove('created_at');
             $builder->add('plainPassword', PasswordType::class,
                 [
+                    'label' => 'Mot de passe',
                     'mapped' => false,
                     'required' => false,
                     'constraints' => [new NotBlank()]
