@@ -22,6 +22,9 @@
     </div>
         </div>
     {% if is_granted('ROLE_USER') %}
+
+    {% endif %}
+    {% if is_granted('ROLE_USER') %}
         {{ include('comments/_form.html.twig') }}
     {% endif %}
 
@@ -33,7 +36,7 @@
 
         {% for comment in comments  %}
             {% if comment.validated or is_granted('ROLE_ADMIN')%}
-            <span>Contenu : {{ comment.content }}</span>{{ macros.bouton(comment) }}<br>
+            <span>{{ comment.user.username }} : {{ comment.content }}</span>{{ macros.bouton(comment) }}<br>
             {% endif %}
         {% endfor %}
     {% endif %}
