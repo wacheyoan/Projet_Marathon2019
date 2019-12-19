@@ -2,8 +2,14 @@
 <section class="header">
     <div class="navbar-items">
 
-        {% set currentPath = path(app.request.attributes.get('_route'),
-            app.request.attributes.get('_route_params'))|split('/') %}
+
+
+        {% if app.request.attributes.get('_route') != null%}
+            {% set currentPath = path(app.request.attributes.get('_route'),
+                app.request.attributes.get('_route_params'))|split('/') %}
+        {% else %}
+            {% set currentPath = ['',''] %}
+        {% endif %}
 
 
         <a class="navbar-item {{ macro.currentPath(path('episodes_index',{'page':1}),currentPath) }}"

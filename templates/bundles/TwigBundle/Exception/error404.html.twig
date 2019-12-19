@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="error">
+        <h1 class="error">Cette page n'existe pas</h1>
+        <img class="mediator1" src="{{ asset("images/home/forme_hp_1.svg") }}" alt="">
+        <img class="mediator2" src="{{ asset("images/home/blob-shape.svg") }}" alt="">
+        <button class="button"><a href="{{ path('home') }}">Vers l'accueil<i class="fas fa-chevron-right"></i></a></button>
+    </div>
+{% endblock %}

@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   background-color: $c-black;
+  margin-top: auto;
+
   .footer_link { 
     display: flex;
     background-color: $c-darkgrey;
@@ -12,7 +14,7 @@
       a {
         text-decoration: none;
         color: $c-white;
-        margin: 0px $spacing-medium;
+        margin: 0 $spacing-medium;
       }
 
       span {
