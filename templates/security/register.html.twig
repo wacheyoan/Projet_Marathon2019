@@ -4,15 +4,11 @@
 
 {% block body %}
     <div class="container">
-        <div class="row">
-            <div class="col-sm-12 ">
-                <h1>Inscription</h1>
+        <div class="form_container">
+            <h3>Inscription</h3>
 
-                <div class="card">
-                    {{ form(form) }}
-                </div>
+            {{ form(form) }}
 
-            </div>
         </div>
         <a class="btn btn-danger" role="button" href="{{ path('user_index') }}">Annuler</a>
     </div>

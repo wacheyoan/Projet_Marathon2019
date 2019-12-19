@@ -1,55 +1,96 @@
 * {
-  padding: 0; margin: 0; box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-
-
-
-
 
 
 .movie_present {
   position: relative;
   display: flex;
   flex-direction: column;
-  font-family: "Public Sans";
+
+  @include screen-wrap() {
+    margin: $spacing-large*4;
+  }
+
+  @include screen-sm() {
+    margin: $spacing-large;
+  }
 
   margin: $spacing-large*4 $spacing-large*10;
+
   .movie_present_pretitle {
-      color: $c-white;
-      font-size: $title-size-large*1.75;
-      b {
-          color:$c-primary;
-      }
+    color: $c-black;
+    font-size: $title-size-large*1.75;
+    line-height: $title-size-large*2;
+
+    b {
+      color: $c-black;
+    }
   }
+
   .movie_presentation {
-      display: flex;
+    display: flex;
+    flex-wrap: wrap;
+
+    img {
+      margin-right: $spacing-large*2;
+    }
+
+    @include screen-sm() {
       img {
-        margin-right: $spacing-large;
-        width: 25%;
+        display: none !important;
       }
-      .movie_present_desc {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        
-        width: 50%;
-        h4 {
-            font-size: $title-size-large*1.5;
-        }
-        p {
-            font-size: $text-size-large;
-            margin: $spacing-large*1.5 0px;
-            line-height: $text-size-large*1.50;
-        }
+    }
+
+    @include screen-wrap() {
+      justify-content: center !important;
+
+      img {
+        margin: $spacing-medium !important;
       }
+    }
+
+    .movie_present_desc {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      width: 50%;
+
+      @include screen-wrap() {
+        width: 100%;
+      }
+
+      h4 {
+        font-size: $title-size-large*1.5;
+      }
+
+      p {
+        font-size: $text-size-large;
+        margin: $spacing-medium 0;
+        line-height: $text-size-large*1.50;
+      }
+    }
   }
 
   .mediator {
     position: absolute;
     z-index: -1;
     top: 50%;
-    left:-16%;
+    left: -16%;
     transform: translateY(-50%);
+
+    @include screen-sm() {
+      top: 0;
+      transform: translateY(0);
+      height: 85%;
+    }
   }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Poppins", Arial;
 }
 

@@ -1,6 +1,7 @@
 {% import 'macros.html.twig' as macro %}
 <section class="header">
     <div class="navbar-items">
+
         {% set currentPath = path(app.request.attributes.get('_route'),
             app.request.attributes.get('_route_params')) %}
 
@@ -16,6 +17,7 @@
                role="button" href="{{ path('app_register') }}">Inscription</a>
 
         {% endif %}
+
             <a class="navbar-item {{ macro.currentPath(path('episodes_index',{'page':1}),currentPath) }}"
                href="{{ path('episodes_index',{'page':1}) }}">Episodes</a>
 
@@ -30,16 +32,23 @@
 
             <a class="navbar-item {{ macro.currentPath( path('home'),currentPath) }}"
                href="{{ path('home') }}">Accueil</a>
-            {% if is_granted('ROLE_USER') %}
-                    <a class="" href="{{ path('user_profil') }}" role="button">
-                            {{ app.user.username }}
-                            {% if is_granted('ROLE_ADMIN') %}
-                                    - ADMIN
-                            {% endif %}
-                    </a>
-                <a href="{{ path('user_edit',{'id':app.user.id}) }}">
-                    <img src="{{ asset(users_path~'/'~app.user.avatar) }}" alt=""></a>
-            {% endif %}
+
+        {% if is_granted('ROLE_USER') %}
+            <div>
+                <a class="navbar-item  {{ macro.currentPath(path('user_profil'),currentPath) }}"
+                   href="{{ path('user_profil') }}" role="button">
+                    {{ app.user.username }}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        Administrateur
+                    {% endif %}
+                </a>
+                <a href="{{ path('user_edit',{'id':app.user.id}) }}"><img
+                            class="avatar"
+                            src="{{ asset(users_path~'/'~app.user.avatar) }}"
+                            alt=""></a>
+            </div>
+        {% endif %}
+
     </div>
 </section>
 
