@@ -1,7 +1,7 @@
 {% macro serieView(serie) %}
 
     <div class="movie_presentation">
-        <img height="400px" src="{{ asset(base_url~serie.image) }}" alt="">
+      <img height="400px" src="{{ asset(base_url~serie.image) }}" alt="">
         <div class="movie_present_desc">
             <h4 class="movie_present_desc_title">{{ serie.name }}</h4>
            {{ serie.summary | raw }}
