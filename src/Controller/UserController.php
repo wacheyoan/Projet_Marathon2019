@@ -118,6 +118,11 @@ class UserController extends AbstractController
      */
     public function edit(Request $request, User $user): Response
     {
+        if($this->isGranted('user_edit',$user) === false){
+            $this->addFlash('danger','Vous n\'avez pas accès à cet objet');
+            return $this->redirectToRoute('home');
+        }
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
