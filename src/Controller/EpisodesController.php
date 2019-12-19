@@ -88,7 +88,7 @@ class EpisodesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('episodes_index');
+            return $this->redirectToRoute('episodes_index',['page' => 1]);
         }
 
         return $this->render('episodes/edit.html.twig', [

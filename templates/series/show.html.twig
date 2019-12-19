@@ -22,13 +22,14 @@
     </div>
         </div>
 
-    <h1>Commentaires : </h1>
-
-    {% for comment in comments  %}
-        {% if comment.validated or is_granted('ROLE_ADMIN')%}
-        <span>Contenu : {{ comment.content }}</span>{{ macros.bouton(comment) }}<br>
-        {% endif %}
-    {% endfor %}
+    {% if comments %}
+        <h1>Commentaires : </h1>
+        {% for comment in comments  %}
+            {% if comment.validated or is_granted('ROLE_ADMIN')%}
+            <span>Contenu : {{ comment.content }}</span>{{ macros.bouton(comment) }}<br>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 
 
     <h1>Episodes :</h1>

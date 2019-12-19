@@ -7,7 +7,7 @@
 
     {{ include('episodes/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('episodes_index') }}">back to list</a>
+    <a href="{{ path('episodes_index',{'page':1}) }}">back to list</a>
 
     {{ include('episodes/_delete_form.html.twig') }}
 {% endblock %}

@@ -5,45 +5,36 @@
 {% block body %}
     <h1>My Profile</h1>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Summary</th>
-            <th>Language</th>
-            <th>Score</th>
-            <th>Status</th>
-            <th>Premiere</th>
-            <th>Url</th>
-            <th>Image</th>
-            <th>Created_at</th>
-            <th>actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for series in series %}
-            <tr>
-                <td>{{ series.id }}</td>
-                <td>{{ series.name }}</td>
-                <td>{{ series.summary|raw }}</td>
-                <td>{{ series.language }}</td>
-                <td>{{ series.score }}</td>
-                <td>{{ series.status }}</td>
-                <td>{{ series.premiere ? series.premiere|date('Y-m-d') : '' }}</td>
-                <td>{{ series.url }}</td>
-                <td><img src="{{ base_url~series.image }}" /></td>
-                <td>{{ series.createdAt ? series.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('series_show', {'id': series.id}) }}">show</a>
-                    <a href="{{ path('series_edit', {'id': series.id}) }}">edit</a>
-                </td>
-            </tr>
+        {% for serie in series %}
+                <a href="{{ path('series_show',{'id':serie.id}) }}"><img src="{{ base_url~serie.image }}" /></a>
+                {{ serie.name }}
         {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
+                 <h1>PAS VU DE SERIE</h1>
         {% endfor %}
-        </tbody>
+
+    <h1>Mes commentaires :</h1>
+        {% for comment in comments %}
+            <div class="row">
+                <span>Contenu : {{ comment.content }}</span>
+                <span>{{ comment.validated ? 'Validé' : 'Pas encore validé' }}</span>
+                <span>Date : {{ comment.createdAt ? comment.createdAt | date('d-m-Y : H:i') : ''}}</span>
+                <span>Nom série : <a href="{{ path('series_show',{'id':comment.Series.id}) }}">{{ comment.Series.name }}</a></span>
+            </div>
+            <br>
+        {% endfor %}
+
+    <h1>Statistiques :</h1>
+    <table>
+        <tr>
+            <th>Total épisodes vus</th>
+            <th>Temps total</th>
+            <th>Nombre commentaires</th>
+        </tr>
+        <tr>
+            <td>{{ nbEpisodesSeen }}</td>
+            <td>{{ cumulativeTime }}min</td>
+            <td>{{ nbComments }}</td>
+        </tr>
     </table>
+
 {% endblock %}

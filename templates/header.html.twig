@@ -1,27 +1,27 @@
 <section class="header">
-    {% if is_granted('ROLE_USER') %}
-        <a class="" href="#" role="button">
-            {{ app.user.username }}
-            {% if is_granted('ROLE_ADMIN') %}
-                -ADMIN-
-            {% endif %}
-        </a>
-    {% endif %}
+
     <div class="navbar-items">
         {% if is_granted('ROLE_USER') %}
             <a class="navbar-item" href="{{ path('app_logout') }}" role="button">
                 Disconnect
             </a>
-            <a class="navbar-item" href="{{ path('home') }}">Index</a>
         {% else %}
+            <a class="navbar-item" role="button" href="{{ path('app_login') }}">Connexion</a>
+            <a class="navbar-item" role="button" href="{{ path('app_register') }}">Inscription</a>
+        {% endif %}
             <a class="navbar-item" href="{{ path('episodes_index',{'page':1}) }}">Episodes</a>
             <a class="navbar-item" href="{{ path('series_index') }}">Séries</a>
             <a class="navbar-item" href="{{ path('kind_index') }}">Catégories</a>
             <img src="{{ asset('images/logos/Logo_carre.svg') }}" alt="logo de Kino" height="100px">
             <a class="navbar-item" href="{{ path('home') }}">Accueil</a>
-            <a class="navbar-item" role="button" href="{{ path('app_login') }}">Connexion</a>
-            <a class="navbar-item" role="button" href="{{ path('app_register') }}">Inscription</a>
-        {% endif %}
+            {% if is_granted('ROLE_USER') %}
+                    <a class="" href="{{ path('user_profil') }}" role="button">
+                            {{ app.user.username }}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                    - ADMIN
+                            {% endif %}
+                    </a>
+            {% endif %}
     </div>
 </section>
 
