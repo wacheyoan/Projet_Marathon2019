@@ -24,3 +24,11 @@
     {% endif %}
 
 {% endmacro %}
+
+{% macro currentPath(value,currentPath) %}
+
+    {% if value == currentPath %}
+        active
+    {% endif %}
+
+{% endmacro %}

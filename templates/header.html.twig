@@ -1,20 +1,36 @@
+{% import 'macros.html.twig' as macro %}
 <section class="header">
-
     <div class="navbar-items">
+        {% set currentPath = path(app.request.attributes.get('_route'),
+            app.request.attributes.get('_route_params')) %}
+        {{ dump(currentPath) }}
+
         {% if is_granted('ROLE_USER') %}
             <a class="navbar-item" href="{{ path('app_logout') }}" role="button">
                 Disconnect
             </a>
         {% else %}
-            <a class="navbar-item" role="button" href="{{ path('app_login') }}">Connexion</a>
-            <a class="navbar-item" role="button" href="{{ path('app_register') }}">Inscription</a>
+            <a class="navbar-item {{ macro.currentPath(path('app_login'),currentPath) }}"
+               role="button" href="{{ path('app_login') }}">Connexion</a>
+
+            <a class="navbar-item {{ macro.currentPath(path('app_register'),currentPath) }}"
+               role="button" href="{{ path('app_register') }}">Inscription</a>
+
         {% endif %}
-            <a class="navbar-item" href="{{ path('episodes_index',{'page':1}) }}">Episodes</a>
-            <a class="navbar-item" href="{{ path('series_index') }}">Séries</a>
-            <a class="navbar-item" href="{{ path('kind_index') }}">Catégories</a>
+            <a class="navbar-item {{ macro.currentPath(path('episodes_index',{'page':1}),currentPath) }}"
+               href="{{ path('episodes_index',{'page':1}) }}">Episodes</a>
+
+            <a class="navbar-item {{ macro.currentPath(path('series_index'),currentPath) }}"
+               href="{{ path('series_index') }}">Séries</a>
+
+            <a class="navbar-item {{ macro.currentPath(path('kind_index'),currentPath) }}"
+               href="{{ path('kind_index') }}">Catégories</a>
+
             <a href="{{ path('home') }}"><img src="{{ asset('images/logos/Logo_carre.svg') }}"
                                               alt="logo de Kino" height="100px"></a>
-            <a class="navbar-item" href="{{ path('home') }}">Accueil</a>
+
+            <a class="navbar-item {{ macro.currentPath( path('home'),currentPath) }}"
+               href="{{ path('home') }}">Accueil</a>
             {% if is_granted('ROLE_USER') %}
                     <a class="" href="{{ path('user_profil') }}" role="button">
                             {{ app.user.username }}
@@ -22,7 +38,8 @@
                                     - ADMIN
                             {% endif %}
                     </a>
-                <a href="{{ path('user_edit',{'id':app.user.id}) }}"><img src="{{ asset(users_path~'/'~app.user.avatar) }}" alt=""></a>
+                <a href="{{ path('user_edit',{'id':app.user.id}) }}">
+                    <img src="{{ asset(users_path~'/'~app.user.avatar) }}" alt=""></a>
             {% endif %}
     </div>
 </section>
