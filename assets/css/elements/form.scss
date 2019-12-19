@@ -1,7 +1,6 @@
 .form_container {
     display: flex;
     flex-direction: column;
-    width: 65%;
 
     margin: auto;
     padding-right:$spacing-large*6;
@@ -56,6 +55,11 @@
         }
 
         input[type="checkbox"]{
+            background-color: $c-white;
+            border: 1px black solid;
+        }
+
+        input[type="file"]{
             background-color: $c-white;
             border: 1px black solid;
         }

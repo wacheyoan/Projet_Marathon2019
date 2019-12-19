@@ -41,7 +41,7 @@ class UserType extends AbstractType
             //->add('password')
             ->add('email')
             ->add('avatar', FileType::class, [
-                'label' => 'avatar',
+                'label' => 'Avatar',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
