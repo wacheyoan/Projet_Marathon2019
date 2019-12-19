@@ -3,8 +3,8 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Form\Type\RolesType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -36,7 +36,6 @@ class UserType extends AbstractType
     {
         $builder
             ->add('username')
-            ->add('roles')
             //->add('password')
             ->add('email')
             ->add('avatar', FileType::class, [
@@ -89,10 +88,8 @@ class UserType extends AbstractType
 
         $entity->setCreatedAt(new \DateTime());
 
-        $form->remove('roles');
-
         if($this->authorizationChecker->isGranted('ROLE_ADMIN')===true){
-            $form->add('roles');
+            $form->add('roles', RolesType::class);
         }
     }
 
