@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/kind")
@@ -50,6 +51,9 @@ class KindController extends AbstractController
     }
 
     /**
+     *
+     * @IsGranted("ROLE_ADMIN")
+
      * @Route("/new", name="kind_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -73,6 +77,9 @@ class KindController extends AbstractController
     }
 
     /**
+     *
+     * @IsGranted("ROLE_ADMIN")
+
      * @Route("/{id}", name="kind_show", methods={"GET"})
      */
     public function show(Kind $kind): Response
@@ -83,6 +90,8 @@ class KindController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
+
      * @Route("/{id}/edit", name="kind_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Kind $kind): Response
@@ -103,6 +112,8 @@ class KindController extends AbstractController
     }
 
     /**
+     *
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}", name="kind_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Kind $kind): Response

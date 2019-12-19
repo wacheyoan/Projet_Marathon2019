@@ -61,6 +61,11 @@
                 </li>
             </ul>
         </div>
+
+        {% if is_granted('ROLE_USER') %}
+            {{ include('comments/_form.html.twig') }}
+        {% endif %}
+
         {% if comments %}
             <div class="container_com">
                 <h1>Commentaires</h1>
@@ -70,7 +75,7 @@
                             <div class="com">
                                 <img src="{{ asset("images/users/"~comment.User.avatar) }}" alt="">
                                 <div class="textes_com">
-                                    <h2>{{ comment.user }}</h2>
+                                    <h2>{{ comment.user.username }}</h2>
                                     {{ comment.content|raw }}
                                 </div>
                             </div>
