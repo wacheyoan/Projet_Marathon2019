@@ -1,5 +1,7 @@
 
 .header {
+  font-family: "Public Sans", Arial;
+  font-weight: 500;
   display: flex;
   justify-content: center;
 
@@ -9,13 +11,30 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width:50%;
+    width: 50%;
+
+    div {
+      display: flex;
+
+      .navbar-item {
+        align-self: center;
+        font-weight: 700;
+      }
+    }
 
     .navbar-item {
       font-weight: 400;
       text-decoration: none;
       color: black;
+      margin: 0 $spacing-medium;
     }
+  }
+
+  .avatar {
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
   }
 }
 
