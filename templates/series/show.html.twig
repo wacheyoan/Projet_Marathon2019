@@ -94,11 +94,12 @@
             {% endfor %}
         </div>
         <div class="container_buttons">
-            <button class="button" style="margin-right: 1.25rem"><a class="puissance" href="{{ path('series_index') }}">Retour à la liste<i
+            <button class="button"><a class="puissance" href="{{ path('series_index') }}">Retour à la liste<i
                             class="fas fa-chevron-right"></i></a></button>
+                            
             <button class="button"><a class="puissance" href="{{ path('series_edit', {'id': series.id}) }}">Modifier<i
                             class="fas fa-edit"></i></a></button>
-            <div class="end">
+            <div class="end"><br /> <br />
                 {{ include('series/_delete_form.html.twig') }}
             </div>
         </div>
