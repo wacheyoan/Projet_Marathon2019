@@ -56,7 +56,10 @@ class UserType extends AbstractType
                     ])
                 ],
             ])
-            ->add('overview', TextareaType::class, ['label' => 'Petite description de vous']);
+            ->add('overview', TextareaType::class, [
+                'label' => 'Petite description de vous',
+                'required' => false,
+            ]);
 
         if($options['style'] === 'register'){
             $builder->remove('roles')->remove('password')->remove('avatar')->remove('created_at');
@@ -68,7 +71,10 @@ class UserType extends AbstractType
                     'constraints' => [new NotBlank()]
                 ]);
                 $builder->remove('overview');
-                $builder->add('overview', TextareaType::class, ['label' => 'Petite description de vous']);
+                $builder->add('overview', TextareaType::class, [
+                    'label' => 'Petite description de vous',
+                    'required' => false
+                ]);
                 $builder->add(
                 'submit',
                 SubmitType::class,

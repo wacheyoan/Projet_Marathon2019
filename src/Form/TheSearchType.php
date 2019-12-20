@@ -15,8 +15,12 @@ class TheSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Recherche',TextType::class)
-            ->add('submit',SubmitType::class)
+            ->add('Recherche',TextType::class,[
+                'label' => ' '
+            ])
+            ->add('submit',SubmitType::class,[
+                'label' => 'Rechercher'
+            ])
         ;
     }
 

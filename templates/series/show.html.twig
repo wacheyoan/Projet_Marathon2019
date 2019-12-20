@@ -62,27 +62,34 @@
             </ul>
         </div>
 
-        {% if is_granted('ROLE_USER') %}
-            {{ include('comments/_form.html.twig') }}
-        {% endif %}
+
 
         {% if comments %}
             <div class="container_com">
                 <h1>Commentaires</h1>
+
                 <div class="list_com">
                     {% for comment in comments %}
                         {% if comment.validated or is_granted('ROLE_ADMIN') %}
                             <div class="com">
-                                <img src="{{ asset(base_url~"/images/users/"~comment.User.avatar) }}" alt="">
+                                <img src="{{ comment.User.avatar ?
+                                asset(base_url~"/images/users/"~comment.User.avatar)
+                                : asset(base_url~"/img/blanck.jpg")}}">
                                 <div class="textes_com">
-                                    <h2>{{ comment.user.username }}</h2>
+                                    <h2 style="font-size: 2rem">{{ comment.user.username }}</h2>
                                     {{ comment.content|raw }}
                                 </div>
+                                {{ macros.bouton(comment) }}
                             </div>
                         {% endif %}
                     {% endfor %}
                 </div>
             </div>
+            {% if is_granted('ROLE_USER') %}
+                <div class="form_container">
+                    {{ include('comments/_form.html.twig') }}
+                </div>
+            {% endif %}
         {% endif %}
         <div class="container_episodes">
             <h1>Tous les <span class="textOrange">épisodes</span></h1>
@@ -91,7 +98,8 @@
                 <div class="list_episodes">
                     {% for episode in season %}
                         <div class="episode">
-                            <a href="{{ path('episodes_show',{'id':episode.id}) }}"><img src="{{ asset(base_url~episode.image) }}"
+                            <a href="{{ path('episodes_show',{'id':episode.id}) }}"><img src="
+                                {{ episode.image ? asset(base_url~episode.image) : asset(base_url~"/img/blanck.jpg") }}"
                                                                                          alt=""></a>
                         </div>
                     {% endfor %}
@@ -101,12 +109,14 @@
         <div class="container_buttons">
             <button class="button"><a class="puissance" href="{{ path('series_index') }}">Retour à la liste<i
                             class="fas fa-chevron-right"></i></a></button>
-                            
+
+            {% if is_granted("ROLE_ADMIN") %}
             <button class="button"><a class="puissance" href="{{ path('series_edit', {'id': series.id}) }}">Modifier<i
                             class="fas fa-edit"></i></a></button>
             <div class="end"><br /> <br />
                 {{ include('series/_delete_form.html.twig') }}
             </div>
+            {% endif %}
         </div>
     </div>
 

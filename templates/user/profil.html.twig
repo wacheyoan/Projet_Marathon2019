@@ -6,7 +6,8 @@
     <div class="container">
         <div class="profile_container">
             <div class="profile_picture">
-                <img src="{{ asset("images/users/"~app.user.avatar) }}"
+                <img src="{{ app.user.avatar ? asset(base_url~"/images/users/"~app.user.avatar)
+                : asset(base_url~"/img/blanck.jpg")}}"
                      alt="photo de profile de {{ app.user.username }}">
             </div>
             <div class="profile_informations">

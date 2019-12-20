@@ -4,14 +4,14 @@
             <li>
                 {#Retour à la premiere page#}
                 <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': 1})) }}">
-                    First
+                    Première
                 </a>
             </li>
             <li>
                 {#Page précédente#}
                 <a href="{{ path(pagination.nomRoute,
                     pagination.paramsRoute|merge({'page': pagination.page-1})) }}">
-                    Previous
+                    Précédent
                 </a>
             </li>
         {% endif %}
@@ -30,14 +30,14 @@
                 {#Page Suivante#}
                 <a href="{{ path(pagination.nomRoute,
                     pagination.paramsRoute|merge({'page': pagination.page+1})) }}">
-                    Next
+                    Suivant
                 </a>
             </li>
             <li>
                 {#Dernière Page#}
                 <a href="{{ path(pagination.nomRoute,
                     pagination.paramsRoute|merge({'page': pagination.nbPages})) }}">
-                    Last
+                    Dernière
                 </a>
             </li>
         {% endif %}

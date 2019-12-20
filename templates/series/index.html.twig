@@ -6,7 +6,7 @@
 
     {% if series is defined %}
         <div class="container">
-            <h2>Series index</h2>
+            <h2>Liste des séries  <a href="{{ path('search_index') }}" class="button">Rechercher</a></h2>
             <div class="cards">
                 <div class="cards_list">
                     {% for serie in series %}
@@ -58,5 +58,9 @@
         </div>
     {% endif %}
 
+
+
+    {% if is_granted("ROLE_ADMIN") %}
     <a href="{{ path('series_new') }}">Create new</a>
+    {% endif %}
 {% endblock %}

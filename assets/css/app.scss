@@ -23,7 +23,8 @@
     font-family: "Public Sans";
     display: flex;
     flex-direction: column;
-    width:100vw;
+    width:100%;
+    overflow: hidden;
     min-height: 100vh;
 }
 
