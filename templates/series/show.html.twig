@@ -31,7 +31,7 @@
                   transform="translate(465.326 163.115) rotate(71)"/>
         </g>
     </svg>
-    <img src="{{ series.image }}" class="serie-img shape_2_photo" width="170"/>
+    <img src="{{ asset(base_url~series.image) }}" class="serie-img shape_2_photo" width="170"/>
     <svg>
         <defs>
             <clipPath id="svgPath" clipPathUnits="userSpaceOnUse">
@@ -73,7 +73,7 @@
                     {% for comment in comments %}
                         {% if comment.validated or is_granted('ROLE_ADMIN') %}
                             <div class="com">
-                                <img src="{{ asset("images/users/"~comment.User.avatar) }}" alt="">
+                                <img src="{{ asset(base_url~"/images/users/"~comment.User.avatar) }}" alt="">
                                 <div class="textes_com">
                                     <h2>{{ comment.user.username }}</h2>
                                     {{ comment.content|raw }}
@@ -91,7 +91,7 @@
                 <div class="list_episodes">
                     {% for episode in season %}
                         <div class="episode">
-                            <a href="{{ path('episodes_show',{'id':episode.id}) }}"><img src="{{ episode.image }}"
+                            <a href="{{ path('episodes_show',{'id':episode.id}) }}"><img src="{{ asset(base_url~episode.image) }}"
                                                                                          alt=""></a>
                         </div>
                     {% endfor %}

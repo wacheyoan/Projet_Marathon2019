@@ -30,7 +30,7 @@
                   transform="translate(465.326 163.115) rotate(71)"/>
         </g>
     </svg>
-    <img src="{{ episode.image ? episode.image : episode.Series.image}}" class="serie-img shape_2_photo" width="170"/>
+    <img src="{{ episode.image ? asset(base_url~episode.image) : asset(base_url~episode.Series.image)}}" class="serie-img shape_2_photo" width="170"/>
     <svg>
         <defs>
             <clipPath id="svgPath" clipPathUnits="userSpaceOnUse">

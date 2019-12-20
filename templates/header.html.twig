@@ -40,7 +40,7 @@
                 </a>
                 <a href="{{ path('user_edit',{'id':app.user.id}) }}"><img
                             class="avatar"
-                            src="{{ asset(users_path~'/'~app.user.avatar) }}"
+                            src="{{ asset(base_url~users_path~'/'~app.user.avatar) }}"
                             alt=""></a>
 
             </div>
